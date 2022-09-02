@@ -3,7 +3,7 @@ name: Django CI
 on:
   push:
     branches:
-      - master
+      - staging
   
 # on:
 #   schedule:
