@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@+s3)w0t*am49c9**#11kmvc^ir9^d6(iez2rd!vj0usmhx3f5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG is True:
     ALLOWED_HOSTS = [
@@ -137,9 +137,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/home/dhaknzie/ewritinghacks.xyz/static')
+STATIC_ROOT = os.path.join(BASE_DIR, '/home/dhakclqz/ewritinghelps.com/static')
 MEDIA_URL = '/uploads/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '/home/dhaknzie/ewritinghacks.xyz/uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, '/home/dhaknzie/ewritinghelps.com/uploads')
 
 #...
 SITE_ID = 1
