@@ -31,7 +31,7 @@ if DEBUG is True:
         '*',
     ]
 else:
-    ALLOWED_HOSTS = ['*ewritinghelps.com']
+    ALLOWED_HOSTS = ['staging.ewritinghelps.com', 'ewritinghelps.com']
 
 
 # Application definition
@@ -163,10 +163,10 @@ CKEDITOR_CONFIGS = {
 
 ## Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.ewritinghacks.xyz'
+EMAIL_HOST = 'mail.ewritinghelps.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 26
-EMAIL_HOST_USER = 'noreply@ewritinghacks.xyz'
+EMAIL_HOST_USER = 'noreply@ewritinghelps.com'
 EMAIL_HOST_PASSWORD = 'Mortuza2015.'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
