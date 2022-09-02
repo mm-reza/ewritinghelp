@@ -170,3 +170,5 @@ EMAIL_HOST_USER = 'noreply@ewritinghacks.xyz'
 EMAIL_HOST_PASSWORD = 'Mortuza2015.'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
