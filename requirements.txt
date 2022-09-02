@@ -10,6 +10,7 @@ idna==2.9
 isort==5.5.2
 jsonfield==2.1.1
 lazy-object-proxy==1.4.3
+messagebird
 oauthlib==3.0.1
 Pillow==7.1.2
 pylint

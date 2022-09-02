@@ -32,12 +32,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9.12
-        
+
     - name: Set Cache
       uses: actions/cache@v1
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/newreq.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
@@ -46,7 +46,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install --upgrade setuptools
         python -m pip install --upgrade wheel
-        pip install -r requirements.txt
+        pip install -r newreq.txt
     - name: Lint with flake8
       run: |
         pip install flake8
