@@ -44,7 +44,7 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ('phone', 'address', 'country', 'city', 'image')
         widgets = {
             'phone': TextInput(attrs={'class': 'input', 'placeholder': 'phone'}),
-            'address': EmailInput(attrs={'class': 'input', 'placeholder': 'address'}),
+            'address': TextInput(attrs={'class': 'input', 'placeholder': 'address'}),
             'country': TextInput(attrs={'class': 'input', 'placeholder': 'country'}),
             'city': TextInput(attrs={'class': 'input', 'placeholder': 'city'}),
             'image': FileInput(attrs={'class': 'input', 'placeholder': 'image'}),

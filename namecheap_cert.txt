@@ -1,0 +1,23 @@
+
+curl https://get.acme.sh | sh
+
+pwd
+
+.acme.sh/acme.sh --register-account -m gdde007@gmail.com
+
+
+# log to check error detail
+.acme.sh/acme.sh.log   
+
+# if ask to install socat
+install socat --help
+install socat -d pdw
+
+.acme.sh/acme.sh letsencrypt-auto certonly -a standalone --issue -d staging.ewritinghelps.com
+
+#access the certificate and key
+cd .acme.sh
+cd dhakaexchange.com
+cat dhakaexchange.com.key
+
+
