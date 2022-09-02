@@ -1,4 +1,4 @@
-                
+'''               
                 
                 user = request.user
                 profile = UserProfile.objects.get(user_id=request.user.id)
@@ -54,3 +54,5 @@
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
+
+'''
