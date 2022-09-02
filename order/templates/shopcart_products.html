@@ -1,0 +1,156 @@
+{% extends 'homebase.html' %}
+{% block title %} Shop Cart {% endblock %}
+{% block description %} {% endblock %}
+{% block keywords %} {% endblock %}
+{% load static %}
+
+{% block body %}
+
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if total == 0  %}
+        <div class="box-element product col-lg-6" style="padding-left:20%; display:flexbox;">
+            <a class="btn btn-outline-dark" href="/">&#x2190; Continue Shopping</a>
+            <br>
+            <br>
+            <p>
+            <h2>No item in cart</h2>
+            </p>
+        </div>
+
+        {% else %}
+        <div class="box-element">
+
+
+            <a class="btn btn-outline-dark" href="/">&#x2190; Continue Shopping</a>
+
+            <br>
+
+            <br>
+            <table class="table">
+                <tr>
+                    <th>
+                        <h5>Items: <strong>{{ subtotal}}</strong></h5>
+                    </th>
+                    <th>
+                        <h5>Total:<strong> ${{total|floatformat:2}}</strong></h5>
+                    </th>
+                    <th>
+                        <a style="float:right; margin:5px;" class="btn btn-success" href="/">Checkout</a>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
+        <br>
+        <div class="box-element" id="cart">
+            <div class="cart-row">
+                <div style="flex:1"></div>
+                <div style="flex:1"><strong>Item</strong></div>
+                <div style="flex:1"><strong>Price</strong></div>
+                <div style="flex:1"><strong>Quantity</strong></div>
+                <div style="flex:1"><strong>Total</strong></div>
+            </div>
+            {% for rs in shopcart %}
+            <div class="cart-row">
+                <div style="flex:1">
+                    {% if rs.variant.image_id  > 0 %}
+                    <img src="{{rs.variant.image }}" alt="" style="height: 5vh; width: auto;">
+                    {% else %}
+                    <img class="row-image" src="{{rs.product.image.url}}" style="height: 5vh; width: auto;">
+                    {% endif %}
+                </div>
+
+                <div style="flex:1">
+                    <p><a href="/product/{{ rs.product.id }}/{{ rs.product.slug }}">{{ rs.variant.size }} to
+                            {{ rs.variant.color }}</a>
+                    </p>
+                </div>
+                <div style="flex:1">
+                    <p>$
+                        {% if rs.product.variant == 'None' %}
+                        {{ rs.product.price }}
+                        {% else %}
+                        {{ rs.variant.price }}
+                        {% endif %}
+                    </p>
+                </div>
+                <div style="flex:1">
+                    <form action="/order/updatecart/{{ rs.id }}" method="post">
+                        {% csrf_token %}
+                        <div id="SelectedProduct">
+                            <div class="qty-input">
+                                <input class="input" name="quantity" type="number" min="3" value="{{rs.quantity}}"
+                                    max="{{ rs.variant.amount }}">
+                                <button type="submit" {% if mini.quantity < 1  %} disabled {% endif %} class="primary-btn" >
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div style="flex:1">
+
+
+                    <p>
+
+                        {% if rs.product.variant == 'None' %}
+                        {{ rs.amount }}
+                        {% else %}
+                        {{ rs.varamount }}
+                        {% endif %}
+
+                    </p>
+                </div>
+                <div style="flex:1 text-left">
+                    <p><a href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')"
+                            class="main-btn icon-btn"><i class="fa fa-close">x</i></a></p>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+
+            <div class="pull-right text-right">
+                <button
+                    class="btn btn-success btn-outline-warning text-dark outline-text-light font-weight-bold">Checkout</button>
+            </div>
+
+            <hr>
+
+            <a style="float:right; margin:5px;" class="btn btn-success btn-block" href="{% url 'orderproduct' %}">Order
+                Now</a>
+            <hr>
+
+
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- <script>
+    document.getElementById("{{rs.id}}").value = localStorage.getItem("{{rs.id}}");
+    var cart = document.getElementById("{{rs.id}}").value;
+    function update(valNum) {
+        document.getElementById("{{rs.id}}").value = valNum;
+        localStorage.setItem("{{rs.id}}", document.getElementById("{{rs.id}}").value);
+        return false;
+    }
+
+</script> -->
+{% endblock %}

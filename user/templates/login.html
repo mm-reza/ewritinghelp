@@ -1,0 +1,47 @@
+{% extends 'homebase.html' %}
+
+{% load static %}
+
+{block title}This Login Page{endblock}
+{block keywords}This is home keywords{endblock}
+{block description}This is home description{endblock}
+
+{% block body %}
+
+<div class="row justify-content-center" style="padding: 15vh">
+
+
+    <div class="col-md-6 box-element">
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <form id="login" action="" method="post">
+            <label for="login"> Login</label>
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="input" type="text" name="username" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <input class="input" type="password" name="password" placeholder="Password">
+            </div>
+            <input class="btn btn-success btn-block" style="background: #37517e;" type="submit" value="Login">
+        </form>
+        <hr>
+      
+            <a class="btn btn-success btn-block" style="background: #37517e;" type="submit" href="{% url 'password_reset' %}" >Forget Password</a>
+    </div>
+</div>
+<style>
+    #login .input {
+    width: 100%;}
+    #login .input:focus{
+        outline: inherit;
+    }
+</style>
+{% endblock %}

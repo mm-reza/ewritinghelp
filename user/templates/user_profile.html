@@ -1,0 +1,358 @@
+{% extends 'homebase.html' %}
+{% load static %}
+
+{% block title %} {{user.first.name}} Profile {% endblock %}
+{block keywords}This is home keywords{endblock}
+{block description}This is home description{endblock}
+
+{% block body %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">User Profile</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-3">
+                {% include "user_panel.html" %}
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="pull-left">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Welcome, {{ user.first_name}} {{ user.last_name}}
+                        </h3>
+                    </div>
+                </div>
+                <hr>
+                <div class="navbar-nav mr-auto">
+                    <div class="form-inline">
+                        <a class="nav-link active" style="padding-right: 20px;" href="/user">Dashboard <span
+                                class="sr-only">(current)</span></a>
+
+                        <a class="nav-link" style="padding-right: 20px;" href="#"> History </a>
+
+                        <a class="nav-link" style="padding-right: 20px;" href="/user"> Profile</a>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class=" row container" style="column-gap: 40px;">
+                    <div class="col box-element">
+                        hello
+                    </div>
+
+                    <div class="col box-element">
+                        world
+                    </div>
+                </div>
+
+
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Recent Orders</h3>
+                    </div>
+                </div>
+                <div class="box-element">
+
+                    <table style="width: 100%;">
+                        {% for rs in recent_order %}
+                        <tr>
+                            <td class="text-left">{{ rs.id}} </td>
+                            <td class="text-left">{{ rs.first_name}} </td>
+                            <td class="text-left">{{ rs.last_name}} </td>
+                            <td class="text-left">{{ rs.total}} </td>
+                            <td class="text-left">{{ rs.status}} </td>
+                            <td class="text-left">{{ rs.create_at}} </td>
+                            <td class="text-left"><a class="primary-btn" href="/user/orderdetail/{{ rs.id }}"> Detail
+                                </a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <a class="primary-btn" href="/user/orders"> More</a>
+
+                    </div>
+
+                </div>
+
+                <div class="box-element">
+
+
+
+                    <div id="container">
+                        <div id="spinner4"></div>
+                        <div class="item">
+                            <div><img class="mySlides" src="{%  static 'images/coin.svg' %}"
+                                    style="height: 100px;" /></div>
+                            <div><img class="mySlides" src="{%  static 'images/arrows.svg' %}"
+                                    style="height: 100px;" /></div>
+                            <div><img class="mySlides" src="{%  static 'images/circle.svg' %}"
+                                    style="height: 100px;" /></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="box-element">
+                    <div class="col-sm-2">
+                        <div id="spinner4"></div>
+                        <h5>spinner4</h5>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 4000);
+    }
+
+
+</script>
+
+
+<style>
+    .mySlides {
+        animation: mymove 4s ease-in-out infinite;
+    }
+
+    @keyframes mymove {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+
+    }
+
+    .mySlides img {
+        transition: opacity 1s ease-in-out;
+    }
+
+    #container {
+        width: auto;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /*     .circle {
+        border-radius: 50%;
+        background-color: rgb(7, 143, 114);
+        width: 150px;
+        height: 150px;
+        position: absolute;
+
+        opacity: 0;
+        animation: scaleIn 3s infinite cubic-bezier(.36, .11, .89, .32);
+    }
+ */
+    .item {
+        z-index: 100;
+        padding: 5px;
+
+    }
+
+    .item img {
+        width: 150px;
+    }
+
+    @keyframes scaleIn {
+        from {
+            transform: scale(.5, .5);
+            opacity: .5;
+        }
+
+        to {
+            transform: scale(2.5, 2.5);
+            opacity: 0;
+        }
+    }
+
+
+
+
+
+
+    /**===== spinner4 =====*/
+    #spinner4 {
+        display: block;
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        -webkit-animation: spinner4 1s linear infinite;
+        animation: spinner4 3s linear infinite;
+    }
+
+    #spinner4:after {
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 5px solid transparent;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.25);
+        -webkit-animation: spinner4_after 2s linear infinite;
+        animation: spinner4_after 2s linear infinite;
+    }
+
+    @keyframes spinner4 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        50% {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes spinner4 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        50% {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner4_after {
+        0% {
+            background: url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+
+        25% {
+            background:url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+
+        50% {
+            background: url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+
+        100% {
+            background: url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+    }
+
+    @-webkit-keyframes spinner4_after {
+        0% {
+            background: url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+
+        25% {
+            background:url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+
+        50% {
+            background: url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+
+        100% {
+            background: url("{%  static 'images/circle.svg' %}");
+            opacity: 0.5;
+        }
+    }
+
+    /** END of spinner4 */
+</style>
+<!-- 
+<script>
+    $(document).ready(function () {
+        $('.constant-simple-slider').slick({
+            pauseOnHover: true,
+            focusOnSelect: true,
+            cssEase: 'linear',
+            speed: 2000,
+            autoPlay: false,
+            fade: true,
+        });
+    });
+</script> -->
+{% endblock %}

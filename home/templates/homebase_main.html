@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title> {% block title %} Ecommerce {% endblock %} </title>
+	<meta name="keyworkds" content="{% block keyworkds %} home keyworkds {% endblock %}">
+	<meta name="description" content="{% block description %} home description {% endblock %}">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<!-- jQuery !-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+	<!-- jQuery UI !-->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="/static/js/jquery-2.2.4.min.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}"/>-->
+
+
+
+	{% block head %} {% endblock %}
+
+</head>
+
+<body>
+
+	{% include 'navbar.html' %}
+
+	{% block sidebar %} {% endblock %}
+
+	{% block slider %} {% endblock %}
+
+	{% block body %} {% endblock %}
+
+	{% block shopcart %} {% endblock %}
+
+	{% block cart %} {% endblock %}
+
+	{% block content %} {% endblock content %}
+
+
+	 <!-- ======= Footer ======= -->
+	 <footer id="footer">
+
+		<div class="footer-top">
+		  <div class="container">
+			<div class="row">
+	
+			  <div class="col-lg-3 col-md-6 footer-contact">
+				<h3>DhakaExchange</h3>
+				<p>
+				  <strong>Email:</strong> info@DhakaExchange<br>
+				</p>
+			  </div>
+	
+			  <div class="col-lg-3 col-md-6 footer-links">
+				<h4>Useful Links</h4>
+				<ul>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+				</ul>
+			  </div>
+	
+			  <div class="col-lg-3 col-md-6 footer-links">
+				<h4>Our Services</h4>
+				<ul>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+				  <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+				</ul>
+			  </div>
+	
+			  <div class="col-lg-3 col-md-6 footer-links">
+				<h4>Our Social Networks</h4>
+				<p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+				<div class="social-links mt-3">
+				  <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+				  <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+				  <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+				  <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+				  <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+				</div>
+			  </div>
+	
+			</div>
+		  </div>
+		</div>
+	
+		<div class="footer-bottom">
+			All Rights Reserved & Copyright &copy; <strong><span>DhakaExchange</span></strong> | Designed by <a href="#">DhakaExchange</a></div>
+		</div>
+	  </footer><!-- End Footer -->
+	
+
+	<style>
+.footer-bottom {
+  color: #fff;
+  background-color:#37517e;
+  text-align: center;
+  padding: 10px;
+}
+	</style>
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<!-- jQuery Plugins -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+
+</html>

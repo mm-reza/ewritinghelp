@@ -1,0 +1,251 @@
+﻿{% extends 'homebase.html' %}
+{% block title %} Shop Cart {% endblock %}
+{% block description %} {% endblock %}
+{% block keywords %} {% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="box-element">
+            <h2>Currency Converter</h2>
+            <h3>Currencies</h3>
+
+            <select name="currenct" id="inputcurrency" onchange="firstTosecond()" onclick="firstTosecond()"
+                oninput="firstTosecond()">
+                <option value="Bkash">Bkash</option>
+                <option value="Paypal">Paypal</option>
+                <option value="Skrill">Skrill</option>
+                <option value="Bank">Bank Deposit</option>
+            </select>
+
+            <input class="form-control" name="frst" id="firstcurrency" type="number" min="1" step="0.01" placeholder="1.00" onclick="firstTosecond()"
+                oninput="firstTosecond()"/>
+
+            <hr>
+            Rate:  <a class="form-control" name="frst" id="firstcurrency" type="number">{{total|floatformat:2}}</a>
+            <hr>
+
+
+            <select name="" id="outputcurrency" onchange="firstTosecond()" onclick="firstTosecond()"
+                oninput="firstTosecond()">
+                <option value="Bkash1">Bkash</option>
+                <option value="Paypal1">Paypal</option>
+                <option value="Skrill1">Skrill</option>
+                <option value="Bank1">Bank Deposit</option>
+            </select>
+            <input name="second" id="secondcurrency" type="number" min="1" disabled />
+
+        </div>
+        <script type="text/javascript">
+
+            function firstTosecond() {
+
+                var input1 = document.getElementById("firstcurrency").value;
+                var input2 = document.getElementById("secondcurrency").value;
+                
+                if (document.getElementById("inputcurrency").value == "Bkash") {
+
+                    if (document.getElementById("outputcurrency").value == "Bkash1") {
+                        document.getElementById("secondcurrency").value = (input1 * 1).toFixed(2);
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Paypal1") {
+                        document.getElementById("secondcurrency").value = input1 * 2;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Skrill1") {
+                        document.getElementById("secondcurrency").value = input1 * 3;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Bank1") {
+                        document.getElementById("secondcurrency").value = input1 * 4;
+                    }
+
+                }
+
+                if (document.getElementById("inputcurrency").value == "Paypal") {
+
+                    if (document.getElementById("outputcurrency").value == "Paypal1") {
+                        document.getElementById("secondcurrency").value = input1 * 1;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Bkash1") {
+                        document.getElementById("secondcurrency").value = input1 * 2;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Skrill1") {
+                        document.getElementById("secondcurrency").value = input1 * 3;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Bank1") {
+                        document.getElementById("secondcurrency").value = input1 * 4;
+                    }
+
+                }
+
+                if (document.getElementById("inputcurrency").value == "Skrill") {
+
+                    if (document.getElementById("outputcurrency").value == "Skrill1") {
+                        document.getElementById("secondcurrency").value = input1 * 1;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Bkash1") {
+                        document.getElementById("secondcurrency").value = input1 * 2;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Paypal1") {
+                        document.getElementById("secondcurrency").value = input1 * 3;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Bank1") {
+                        document.getElementById("secondcurrency").value = input1 * 4;
+                    }
+
+                }
+
+                if (document.getElementById("inputcurrency").value == "Bank") {
+
+                    if (document.getElementById("outputcurrency").value == "Bank1") {
+                        document.getElementById("secondcurrency").value = input1 * 1;
+                    }
+                    else if (document.getElementById("outputcurrency").value == "Bkash1") {
+                        document.getElementById("secondcurrency").value = input1 * 2;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Paypal1") {
+                        document.getElementById("secondcurrency").value = input1 * 3;
+                    }
+
+                    else if (document.getElementById("outputcurrency").value == "Skrill1") {
+                        document.getElementById("secondcurrency").value = input1 * 4;
+                    }
+                }
+
+            }
+
+        </script>
+
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Name..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="email" name="email" placeholder="Email..">
+                    </div>
+                </div>
+
+                <div id="shipping-info">
+                    <hr>
+                    <p>Shipping Information:</p>
+                    <hr>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="address" placeholder="Address..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="city" placeholder="City..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="state" placeholder="State..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="country" placeholder="Zip code..">
+                    </div>
+                </div>
+
+                <hr>
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+                <div class="pull-right">
+                    <button type="if {{ total }}> 0 submit else " class="primary-btn">Complete Order</button>
+                </div>
+            </form>
+        </div>
+
+ 
+        <br>
+        <div class="box-element hidden" id="payment-info">
+            <small>Paypal Options</small>
+            <button id="make-payment">Make payment</button>
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+        <div class="box-element">
+
+            <a class="btn btn-outline-dark" href="/">&#x2190; Continue Shopping</a>
+
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th>
+                        <h5>Items: <strong>{{ subtotal}}</strong></h5>
+                    </th>
+                    <th>
+                        <h5>Total:<strong> ${{total|floatformat:2}}</strong></h5>
+                    </th>
+                    <th>
+                        <a style="float:right; margin:5px;" class="btn btn-success" href="/">Checkout</a>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
+        <br>
+        <div class="box-element">
+            <div class="cart-row">
+                <div style="flex:1"></div>
+                <div style="flex:1"><strong>Item</strong></div>
+                <div style="flex:1"><strong>Price</strong></div>
+                <div style="flex:1"><strong>Quantity</strong></div>
+                <div style="flex:1"><strong>Total</strong></div>
+            </div>
+            {% for rs in shopcart %}
+            <div class="cart-row">
+                <div style="flex:1"><img class="row-image" src="{{rs.product.image.url}}"
+                        style="height: 5vh; width: auto;"></div>
+                <div style="flex:1 /*; justify-content: center; align-items: center; */">
+                    <p>{{rs.product.title}}</p>
+                </div>
+                <div style="flex:1">
+                    <p>${{rs.product.price|floatformat:2}}</p>
+                </div>
+                <div style="flex:1">
+                    <p> {{rs.quantity}}</p>
+                </div>
+                <div style="flex:1">
+                    <p>${{rs.amount|floatformat:2}}</p>
+                </div>
+                <div style="flex:1 text-left">
+                    <p><a href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')"
+                            class="main-btn icon-btn"><i class="fa fa-close">x</i></a>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="pull-right text-right">
+                <a href="/order/orderproduct/"
+                    class="btn btn-warning btn-outline-success text-dark font-weight-bold">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block shopcart %}
+
+{% endblock shopcart %}

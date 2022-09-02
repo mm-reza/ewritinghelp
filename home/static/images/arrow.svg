@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="238.086mm"
+   height="238.15903mm"
+   viewBox="0 0 843.61181 843.87056"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="circle-arrow-cc-rgb.svg">
+  <title
+     id="title4186">Counterclockwise Circle Arrows</title>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="559.90066"
+     inkscape:cy="457.78372"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="712"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3341"
+       originx="863.25779"
+       originy="-62.107544" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Counterclockwise Circle Arrows</dc:title>
+        <dc:date>2016-01-08</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Algot Runeman</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Algot Runeman</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>runeman.org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:identifier>circle-arrows-cc-rgb.svg</dc:identifier>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(863.2578,-146.38411)">
+    <g
+       id="g4213"
+       transform="matrix(0.99885354,-0.04787034,0.04787034,0.99885354,-27.712041,-20.481099)"
+       inkscape:export-xdpi="16.001837"
+       inkscape:export-ydpi="16.001837">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3365"
+         d="m -431.63086,147.00195 a 421.42856,421.42856 0 0 0 -374.91211,210.59766 421.42856,421.42856 0 0 0 -14.12109,393.88281 l 108.53711,-3.20117 71.3125,-101.03125 a 214.53116,214.53116 0 0 1 13.44922,-186.20312 214.53116,214.53116 0 0 1 196.26757,-106.9668 l -50.92382,-110.29102 52.07031,-96.66406 a 421.42856,421.42856 0 0 0 -1.67969,-0.12305 z"
+         style="opacity:1;fill:#ff0000;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3363"
+         d="m -410.70312,148.54492 -51.30665,95.24414 51.88282,112.36719 a 214.53116,214.53116 0 0 1 75.81836,26.36914 214.53116,214.53116 0 0 1 78.52343,293.05469 214.53116,214.53116 0 0 1 -5.60742,8.68164 l 120.95508,11.04297 57.71875,93.49219 a 421.42856,421.42856 0 0 0 6.111328,-9.76954 A 421.42856,421.42856 0 0 0 -230.86133,203.3457 421.42856,421.42856 0 0 0 -410.70312,148.54492 Z"
+         style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3336"
+         d="m -632.10938,666.42578 -70.01171,99.18555 -109.73047,3.23828 a 421.42856,421.42856 0 0 0 159.5625,164.43359 421.42856,421.42856 0 0 0 559.085935,-127.93359 l -57.240235,-92.71484 -123.19922,-11.24805 a 214.53116,214.53116 0 0 1 -275.19726,52.7168 214.53116,214.53116 0 0 1 -83.26954,-87.67774 z"
+         style="opacity:1;fill:#008000;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

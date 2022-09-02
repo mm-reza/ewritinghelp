@@ -1,0 +1,29 @@
+<input type="hidden" name="size" id="size" value="{{ size_id }}">
+<ul class="color-option box-element d-flex align-items-center justify-content-center"
+    style="padding: 0; height: 55px; ">
+    {% for rs in colors %}
+    <div class="form-check d-flex align-items-center" style="padding-left: 0;">
+        <input type="radio" class="button" name="variantid" id="variantid" value="{{ rs.id }}"
+            onchange="this.form.submit();" onsubmit="return false" onchange="return false">
+    </div>
+    <li style="padding-right: 10px;">
+
+        {{ rs.color }}
+
+        <!-- <img src="{{ rs.image }}" style="height: 50px"> -->
+    </li>
+    {% endfor %}
+</ul>
+
+<style>
+    select.form-control {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .form-control,
+    .input {
+        border: 0;
+    }
+</style>

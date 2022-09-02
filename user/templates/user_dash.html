@@ -1,0 +1,96 @@
+{% extends 'homebase.html' %}
+{% load static %}
+
+{% block title %} {{user.first.name}} Free Plagiarism Report{% endblock %}
+{block keywords}Grammarly, turnitin{endblock}
+{block description}Grammarly, turnitin, plagiarism{endblock}
+
+{% block body %}
+<br>
+<br>
+<!-- section -->
+<div class="section" style="height: 80vh">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="pull-left">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Welcome, {{ user.first_name}} {{ user.last_name}}
+                        </h3>
+                    </div>
+                </div>
+                <hr>
+                <div class="navbar-nav mr-auto">
+                    <div class="form-inline">
+                        <a class="nav-link active" style="padding-right: 20px;" href="/user">Dashboard <span
+                                class="sr-only">(current)</span></a>
+
+                        <a class="nav-link" style="padding-right: 20px;" href="/user/files"> History </a>
+
+                        <a class="nav-link" style="padding-right: 20px;" href="/user/update"> Profile</a>
+                    </div>
+                </div>
+
+                <hr>
+
+
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">Recent Files</h3>
+                    </div>
+                </div>
+                
+                <div class="box-element">
+                    
+                
+                    <table style="width: 100%;">
+                        {% for rs in recent_files %}
+                        <tr>
+                            <td class="text-left" style="width: 20vw;"><a>{{ rs.create_at}}</a></td>
+                            
+                            <td><a href="{{ rs.files.url}}"> {{ rs.first_name}} </a></td>
+                            
+                            <td class="text-left">
+                                {% if rs.reports %} 
+                                <a class="btn btn-success btn-block" style=" border: none; border-radius: 4px; background: #37517e;" href="{{ rs.reports.url}}"> Report </a>
+                                {% else %} 
+                                <a class="btn btn-success btn-block" style=" border: none; border-radius: 4px; background: #37517e; color: white;">Report Not Ready </a>
+                                {% endif %}
+                                
+                            </td>
+                            
+                            
+                            <td class="text-center"> <a class="btn btn-success" style=" border: none; border-radius: 4px; background: #37517e; color:white;font-weight:600; text-align: center;" href="/user/files"> More</a>
+</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'homebase.html' %}
+{% load widget_tweaks %}
+
+{block title}Register Page{endblock}
+{block keywords}This is home keywords{endblock}
+{block description}This is home description{endblock}
+
+{% block body %}
+
+<div class="row justify-content-center " style="padding: 15vh;">
+    <div class="col-md-6 box-element">
+        <div class="section-title">
+            <h3 class="title">Sign Up Form</h3>
+        </div>
+
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+            {% for x in error.values %}
+
+            {{x}}
+            {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <form id="signup" method="post">
+            {% csrf_token %}
+            <table>
+                {% for field in form.visible_fields %}
+                  <tr>
+                    <th style="padding: 20px;">{{ field.label_tag }}</th>
+                    <td style="width: 50%;">
+                   
+                      {{ field }}
+                     
+                    </td>
+                  </tr>
+                {% endfor %}
+              </table>
+            
+            <hr>
+            <button class="btn btn-success btn-block" style="background: #37517e;" type="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+    <style>
+        input,
+        textarea {
+            width: 100%;
+            padding: 5px !important;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 3px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgb(169, 169, 169)
+        }
+
+        input {
+            height: 30px;
+        }
+
+        input:focus {
+            outline: inherit;
+        }
+    </style>
+</div>
+{% endblock body %}

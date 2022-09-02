@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title> {% block title %} Ecommerce {% endblock %} </title>
+    <meta name="keyworkds" content="{% block keyworkds %} home keyworkds {% endblock %}">
+    <meta name="description" content="{% block description %} home description {% endblock %}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- jQuery !-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="/static/js/jquery-2.2.4.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}" />
+
+
+</head>
+
+<body>
+    <tbody>
+        <tr>
+            <td class="m_-7623622927351798282gmailfix-h">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td align="right"
+                                style="padding:5px;font-family:sans-serif;font-size:11px;line-height:15px;color:#485161">
+                                <a href="http://smtp2.info.skrill.com/track?t=v&amp;enid=ZWFzPTImbXNpZD0xJmF1aWQ9NDQxNDczNCZtaWQ9MzM2MDAmbXNnaWQ9MjE5MDAmZGlkPTE0Njk1Mzc5NTAmZWRpZD0xNDY5NTM3OTUwJnNuPTMzNTU1NzMxJmVpZD1tb3J0dXphLnR2aUBnbWFpbC5jb20mZWVpZD1tb3J0dXphLnR2aUBnbWFpbC5jb20mdWlkPTJfODE1MDMmdGFyZ2V0aWQ9Jm1uPTE5MzYyNjMmcmlkPTgxNTAzJmVyaWQ9ODE1MDMmZmw9Jm12aWQ9JnRnaWQ9JmV4dHJhPQ==&amp;&amp;&amp;33600&amp;eu=1&amp;&amp;&amp;#"
+                                    style="font-family:Arial;font-size:11px;line-height:19px;color:#485161;text-align:right;text-decoration:none"
+                                    target="_blank"
+                                    data-saferedirecturl="https://www.google.com/url?q=http://smtp2.info.skrill.com/track?t%3Dv%26enid%3DZWFzPTImbXNpZD0xJmF1aWQ9NDQxNDczNCZtaWQ9MzM2MDAmbXNnaWQ9MjE5MDAmZGlkPTE0Njk1Mzc5NTAmZWRpZD0xNDY5NTM3OTUwJnNuPTMzNTU1NzMxJmVpZD1tb3J0dXphLnR2aUBnbWFpbC5jb20mZWVpZD1tb3J0dXphLnR2aUBnbWFpbC5jb20mdWlkPTJfODE1MDMmdGFyZ2V0aWQ9Jm1uPTE5MzYyNjMmcmlkPTgxNTAzJmVyaWQ9ODE1MDMmZmw9Jm12aWQ9JnRnaWQ9JmV4dHJhPQ%3D%3D%26%26%2633600%26eu%3D1%26%26%26%23&amp;source=gmail&amp;ust=1603846720372000&amp;usg=AFQjCNEi0FxaZoqfw4WofvY8DIJC5M6ciw">View
+                                    In Browser</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="middle"
+                style="text-align:center;background-image:url('https://ci4.googleusercontent.com/proxy/V-4u8N6R_gG8lxavwdZWehso_BQp4Zwrbqmbh6CFxT_NTPlGgPrjWmpkhCeQ-ZGDtqG3ona4rVx6pE-er8omHLwZlnJbmjQAfm1BRQOxhZmjX4N9zL_emTyUCgXXl2LmytGfsrKlp8uFVBqy-Q=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/SkrillHeader_BG.png');background-color:#222222;background-position:center center!important;background-size:cover!important">
+
+                <div>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" height="50"
+                        style="height:50px" class="m_-7623622927351798282header-bg-change">
+                        <tbody>
+                            <tr>
+                                <td valign="top" align="left" width="124" style="width:124px">
+                                    <a href="https://www.skrill.com/en/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                        target="_blank"
+                                        data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720372000&amp;usg=AFQjCNHOHBjvoEQdPadCHaSM4Nq5d-T5BA"><img
+                                            src="https://ci4.googleusercontent.com/proxy/Q0JHyMTf0VwBpneFyM2T_AYuwYU6iUIh_A6WNAI0JfJI7SD9wjrjEYgj6eIjiWJr8yJ_a2i7wDza28Wj8BkFy605kPkp2NnVGRw9plfoqCnhnFqXXxpOYUsb72JaYcI42gxQC5I5A9G8tFL6TsKYxWO7=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/SkrillHeader_logo_01.png"
+                                            width="125" height="50" alt="Skrill" border="0" style="display:block"
+                                            class="CToWUd"></a>
+                                </td>
+                                <td align="center">
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+                                        height="50">
+                                        <tbody>
+                                            <tr>
+                                                <td align="right" valign="middle">
+
+                                                    <table role="presentation" cellspacing="0" cellpadding="0"
+                                                        border="0" class="m_-7623622927351798282center-on-narrow">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="m_-7623622927351798282button-td m_-7623622927351798282button-td-primary"
+                                                                    style="border-radius:8px">
+                                                                    <a href="https://account.skrill.com/login?locale=en&amp;utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600&amp;utm_content="
+                                                                        class="m_-7623622927351798282button-a m_-7623622927351798282button-a-primary"
+                                                                        style="border:2px solid #ffffff;font-family:Arial,sans-serif;font-size:10px;line-height:15px;text-decoration:none;padding:6px 22px;color:#ffffff;display:block;border-radius:8px;font-weight:bold;font-stretch:extra-condensed"
+                                                                        target="_blank"
+                                                                        data-saferedirecturl="https://www.google.com/url?q=https://account.skrill.com/login?locale%3Den%26utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600%26utm_content%3D&amp;source=gmail&amp;ust=1603846720373000&amp;usg=AFQjCNEOKQFrG8zcqYnAlphzoKfDIaW42g">LOG
+                                                                        IN</a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td width="30" style="font-size:1px;line-height:1px;width:30px">&nbsp;
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+                <table width="640" height="58" class="m_-7623622927351798282autoh m_-7623622927351798282gmailfix-h"
+                    cellpadding="0" cellspacing="0" border="0" bgcolor="#592357"
+                    style="width:640px;height:1px;display:none">
+                    <tbody>
+                        <tr>
+                            <td bgcolor="#592357" valign="top" class="m_-7623622927351798282autoh" width="1" height="1"
+                                style="width:1px;height:1px">
+
+
+                                <div style="display:none;font-size:0;line-height:0;max-height:0;overflow:hidden">
+                                    <form style="border-style:none;border-width:0px" target="_blank">
+                                        <div id="m_-7623622927351798282wrapper" style="background-color:#592357">
+                                            <table border="0" cellpadding="0" cellspacing="0"
+                                                style="border-collapse:collapse;border-spacing:0;table-layout:fixed;border-bottom-color:#5c235a;border-bottom:1px solid #5c235a"
+                                                width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+
+                                                            <input id="m_-7623622927351798282mobile-checkbox"
+                                                                style="display:none!important;max-height:0"
+                                                                type="checkbox">
+
+                                                            <table align="center" border="0" cellpadding="0"
+                                                                cellspacing="0"
+                                                                style="border-collapse:collapse;border-spacing:0;margin:auto;min-width:600px"
+                                                                width="600">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <a href="https://www.skrill.com/en/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                                                                target="_blank"
+                                                                                data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720373000&amp;usg=AFQjCNFCbqPxkskYIEjVHdSBAS-ScRu0Vg"><img
+                                                                                    src="https://ci4.googleusercontent.com/proxy/Q0JHyMTf0VwBpneFyM2T_AYuwYU6iUIh_A6WNAI0JfJI7SD9wjrjEYgj6eIjiWJr8yJ_a2i7wDza28Wj8BkFy605kPkp2NnVGRw9plfoqCnhnFqXXxpOYUsb72JaYcI42gxQC5I5A9G8tFL6TsKYxWO7=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/SkrillHeader_logo_01.png"
+                                                                                    style="width:125px;height:50px;display:block!important;float:left"
+                                                                                    class="CToWUd"></a>
+                                                                            <label
+                                                                                for="m_-7623622927351798282mobile-checkbox"
+                                                                                id="m_-7623622927351798282mobile-label"
+                                                                                style="display:none">
+                                                                                <b></b>
+                                                                                <b></b>
+                                                                                <b></b>
+                                                                            </label>
+
+                                                                            <table width="100%" align="center"
+                                                                                border="0" cellpadding="0"
+                                                                                cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding-left:80px">
+                                                                                            <div
+                                                                                                id="m_-7623622927351798282menu-wrapper">
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://account.skrill.com/login?locale=en&amp;utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600&amp;utm_content="
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://account.skrill.com/login?locale%3Den%26utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600%26utm_content%3D&amp;source=gmail&amp;ust=1603846720373000&amp;usg=AFQjCNEOKQFrG8zcqYnAlphzoKfDIaW42g">LOG
+                                                                                                                    INTO
+                                                                                                                    YOUR
+                                                                                                                    ACCOUNT</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://www.skrill.com/en/#c109952"
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/%23c109952&amp;source=gmail&amp;ust=1603846720373000&amp;usg=AFQjCNFlIM6pF4b7SzRTQYYbK3lZgDGqBQ">DOWNLOAD
+                                                                                                                    OUR
+                                                                                                                    APP</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://www.skrill.com/en/support#/path/Contact-us/1048967322/Contact-us.htm"
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/support%23/path/Contact-us/1048967322/Contact-us.htm&amp;source=gmail&amp;ust=1603846720373000&amp;usg=AFQjCNH0KFxLiaCV7SIxu6dscbMtI9wMYQ">TALK
+                                                                                                                    TO
+                                                                                                                    US</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+
+
+        <tr>
+
+            <td valign="middle"
+                style="text-align:center;background-image:url('https://ci6.googleusercontent.com/proxy/pDEAZij8cuIGEwd27EpFcFgzMvqv-gzEvKrHTaLSh7FEolVvhY9HVLUb1xg6o7uNHwUjgf0-LDQ752kcbHo0pc--X5UQKUkDpHmKcnfqB22XEq7n1jqunJtP6BPG1AzDqkq-fnUtl54ayg=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/FULL_BG_HERO.png');background-color:#5c235a;background-position:center center!important;background-size:cover!important"
+                class="m_-7623622927351798282bg-hero-resize" bgcolor="#5c235a">
+
+                <div>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="35" style="font-size:1px;line-height:1px;width:35px">&nbsp;</td>
+                                <td valign="top">
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td height="45" style="height:45px">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" align="center"
+                                                    style="font-style:normal;font-family:Arial,sans-serif,Georgia,Helvetica;font-size:18px;line-height:25px;color:#ffffff;text-align:left">
+                                                    Hi Md,</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="1" height="20" style="height:20px">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+
+
+
+                                                <td valign="top" align="center"
+                                                    style="font-family:'Oswald',sans-serif,Arial,sans-serif,Arial Black;font-size:41px;line-height:54px;color:#ffffff;text-align:left;font-stretch:extra-condensed"
+                                                    class="m_-7623622927351798282f38">
+
+                                                    <span><strong>YOU ASKED TO RESET YOUR PIN</strong></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="1" height="20" style="height:20px">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" align="center"
+                                                    style="font-style:normal;font-family:Arial,sans-serif,Georgia,Helvetica;font-size:20px;line-height:25px;color:#ffffff;text-align:left">
+                                                    No problem. Simply click on the button below.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="1" height="20" style="height:20px">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">
+
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                                        style="width:100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <img alt="spacer"
+                                                                        src="https://ci3.googleusercontent.com/proxy/eJtgrvVU9EQkrQJ80Qt5HfYg1uUxdwIDb0epZQ3X1YV3exVLjYnJfx2fztKcYVwrcBbnW7W3OR8CFj5ywFHKYCfer56n3g8e9FjZKLQ8HgVIcVRQNWwALPejY-EMSLBV_mjqog=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/Modular_Templates/spacer.gif"
+                                                                        width="1" height="20" style="display:block"
+                                                                        class="CToWUd">
+                                                                </td>
+                                                                <td>
+
+                                                                    <table align="left" role="presentation"
+                                                                        cellspacing="0" cellpadding="0" border="0"
+                                                                        style="margin:auto">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="m_-7623622927351798282button-td m_-7623622927351798282button-td-primary"
+                                                                                    style="border-radius:8px;background:#1dcece;padding:8px 14px">
+
+                                                                                    <table align="center"
+                                                                                        role="presentation"
+                                                                                        cellspacing="0" cellpadding="0"
+                                                                                        border="0">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td width="20"
+                                                                                                    style="width:20px">
+                                                                                                    &nbsp;</td>
+                                                                                                <td style="font-family:sans-serif;font-size:15px;line-height:15px;text-decoration:none;min-width:100px;font-weight:bold;color:#32466e"
+                                                                                                    class="m_-7623622927351798282text-center m_-7623622927351798282button-td-primary m_-7623622927351798282fw">
+                                                                                                    <a class="m_-7623622927351798282button-a m_-7623622927351798282button-a-primary"
+                                                                                                        href="https://account.skrill.com/wallet/account/pin?code=6886D138F7D6339F&amp;email=mortuza.tvi%40gmail.com&amp;retrieval_id=37ddbac7-da44-4fc0-91ac-fbb094e2d600"
+                                                                                                        style="background:#1dcece;border:1px solid #1dcece;font-family:sans-serif;font-size:15px;line-height:15px;text-decoration:none;color:#32466e;display:block;border-radius:8px"
+                                                                                                        target="_blank"
+                                                                                                        data-saferedirecturl="https://www.google.com/url?q=https://account.skrill.com/wallet/account/pin?code%3D6886D138F7D6339F%26email%3Dmortuza.tvi%2540gmail.com%26retrieval_id%3D37ddbac7-da44-4fc0-91ac-fbb094e2d600&amp;source=gmail&amp;ust=1603846720373000&amp;usg=AFQjCNGOq1PUl8VfMhhXYFLrNrBSYc2aUw"><strong
+                                                                                                            style="color:#32466e;font-weight:bold">Reset
+                                                                                                            PIN</strong></a>
+                                                                                                </td>
+                                                                                                <td width="20"
+                                                                                                    style="width:20px">
+                                                                                                    &nbsp;</td>
+                                                                                                <td width="20"
+                                                                                                    align="right"
+                                                                                                    style="text-align:right">
+                                                                                                    <img src="https://ci6.googleusercontent.com/proxy/Wz4UNd1Je0yjD12K1cSG7gEg_MStNWKxrE19ew0sCQQY9fCxF2t73w7CK6d7wz-s6vsJSnFStGPg7LZlUEgzWwErJcQ4z0eRpF6BNhywFBdHLtEHc1f81i3Ptkclo82q3-Nu_7jmyoY=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/ARROW_TRAN.png"
+                                                                                                        width="20"
+                                                                                                        height="24"
+                                                                                                        style="display:block"
+                                                                                                        class="CToWUd">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </td>
+                                                                <td>
+                                                                    <img alt="spacer"
+                                                                        src="https://ci3.googleusercontent.com/proxy/eJtgrvVU9EQkrQJ80Qt5HfYg1uUxdwIDb0epZQ3X1YV3exVLjYnJfx2fztKcYVwrcBbnW7W3OR8CFj5ywFHKYCfer56n3g8e9FjZKLQ8HgVIcVRQNWwALPejY-EMSLBV_mjqog=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/Modular_Templates/spacer.gif"
+                                                                        width="1" height="20" style="display:block"
+                                                                        class="CToWUd">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="1" height="20" style="height:20px">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td width="100" style="font-size:1px;line-height:1px;width:100px">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+
+
+
+
+        <tr>
+            <td style="background-color:#ffffff">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="padding:20px 30px;font-family:Airal,sans-serif;font-size:14px;line-height:20px;color:#79356e">
+                                If the button above doesn’t work, please copy and paste this link into your browser:
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+
+
+        <tr>
+            <td style="background-color:#ffffff">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="padding:20px 30px;font-family:Airal,sans-serif;font-size:14px;line-height:20px;color:#79356e;word-break:break-all;word-wrap:break-word;max-width:500px">
+                                <a href="https://account.skrill.com/wallet/account/pin?code=6886D138F7D6339F&amp;email=mortuza.tvi%40gmail.com&amp;retrieval_id=37ddbac7-da44-4fc0-91ac-fbb094e2d600"
+                                    style="color:#79346d;text-decoration:underline" target="_blank"
+                                    data-saferedirecturl="https://www.google.com/url?q=https://account.skrill.com/wallet/account/pin?code%3D6886D138F7D6339F%26email%3Dmortuza.tvi%2540gmail.com%26retrieval_id%3D37ddbac7-da44-4fc0-91ac-fbb094e2d600&amp;source=gmail&amp;ust=1603846720374000&amp;usg=AFQjCNFFnkY4TXwa8WtjdCEmT0ImaEq2ug">https://account.skrill.com/<wbr>wallet/account/pin?code=<wbr>6886D138F7D6339F&amp;email=<wbr>mortuza.tvi%40gmail.com&amp;<wbr>retrieval_id=37ddbac7-da44-<wbr>4fc0-91ac-fbb094e2d600</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td style="background-color:#ffffff">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="padding:20px 30px;font-family:Airal,sans-serif;font-size:14px;line-height:20px;color:#79356e">
+                                You can use this link by 27/10/2020 18:45:59 CET. After that, you’ll have to ask for a
+                                new PIN.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+
+
+
+        <tr>
+            <td style="background-color:#ffffff">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="padding:20px 30px;font-family:Airal,sans-serif;font-size:14px;line-height:20px;color:#79356e">
+                                <strong> Why have I received this email? </strong><br>
+                                Because you asked to reset your PIN. If you didn’t do this, please contact <a
+                                    href="https://www.skrill.com/en/support/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                    style="color:#79346d;text-decoration:underline" target="_blank"
+                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/support/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720374000&amp;usg=AFQjCNFNHPDmWy9Ir5FRxVxNVkzKmkILzA">Skrill
+                                    customer services</a> as soon as possible.
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+
+
+        <tr>
+            <td style="background-color:#ffffff">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="padding:20px 30px;font-family:Airal,sans-serif;font-size:15px;line-height:20px;color:#79356e">
+                                <strong>Thank you for choosing Skrill</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td style="background-color:#ffffff">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td align="left" style="padding:20px 30px;font-family:Airal,sans-serif;color:#555555">
+                                <img src="https://ci3.googleusercontent.com/proxy/Anvz3cltDMsPSnB-5J6YCnC1bi7h-hOQ2_e2k-K2cWRohxTNtNxEFjO9_KGSCFrlPXwqEdSVQ5HtOsryMuz2I4gjWJxiNRCAo1Mumgvo8YIhVrYlkFzX8sh_Zo7WYzwxgazCzgTZiwttiycyMh958Vc=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/SKRILL_LOGO_SIGNOFF.png"
+                                    width="80" height="26" alt="Skrill" border="0" style="display:block" class="CToWUd">
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td style="background-color:#544c63">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tbody>
+                        <tr>
+
+                            <th valign="middle" align="center"
+                                class="m_-7623622927351798282stack-items m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left">
+                                                <img alt="Box-D"
+                                                    src="https://ci5.googleusercontent.com/proxy/IRhQ9mP8BwplvFv25vV8MGTlyavasHuSIkV4eicKk8kxGd-gy_Gs3V8-1pMjKS5ZHx_6rAxSgEWc8Fyu5h4Ns8UEXbjuHhEZOT8Wivb5BW6xR7y03HXcwExMRdeP-nqH1VAy6oj8oYbASRGrYWQ=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/PoweredByPaysafe.png"
+                                                    width="210" height="70" border="0" class="CToWUd">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </th>
+
+
+                            <th valign="middle" align="center"
+                                class="m_-7623622927351798282stack-items m_-7623622927351798282footer-bg-change m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <th class="m_-7623622927351798282gmailfix-h m_-7623622927351798282stack-column-center"
+                                                height="20" width="60" style="width:60px">&nbsp;</th>
+                                            <th
+                                                class="m_-7623622927351798282stack-items m_-7623622927351798282stack-column-center">
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                                    width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#ffffff;text-align:center;letter-spacing:1px"
+                                                                class="m_-7623622927351798282stack-items m_-7623622927351798282insert-div m_-7623622927351798282insert-div m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center">
+                                                                <a href="https://www.skrill.com/en/siteinformation/about-us/"
+                                                                    style="font-family:Arial;font-size:12px;line-height:18px;color:#ffffff;text-decoration:none"
+                                                                    target="_blank"
+                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/siteinformation/about-us/&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNEy7swEMB-pc2Bfk2gyLEIPVj0ZqQ">About</a>
+                                                            </th>
+                                                            <th class="m_-7623622927351798282stack-items m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center"
+                                                                height="8" width="20" style="display:block;width:20px">
+                                                                &nbsp;</th>
+                                                            <th style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#ffffff;text-align:center;letter-spacing:1px"
+                                                                class="m_-7623622927351798282stack-items m_-7623622927351798282insert-div m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center">
+                                                                <a href="https://www.skrill.com/en/support#/path/Contact-us/1048967322/Contact-us.htm"
+                                                                    style="font-family:Arial;font-size:12px;line-height:18px;color:#ffffff;text-decoration:none"
+                                                                    target="_blank"
+                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/support%23/path/Contact-us/1048967322/Contact-us.htm&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNFG7JD-84CMCxcUkpiGyaFqvRqXwQ">Support</a>
+                                                            </th>
+                                                            <th class="m_-7623622927351798282stack-items m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center"
+                                                                height="8" width="20" style="display:block;width:20px">
+                                                                &nbsp;</th>
+                                                            <th style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#ffffff;text-align:center;letter-spacing:1px"
+                                                                class="m_-7623622927351798282stack-items m_-7623622927351798282insert-div m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center">
+                                                                <a href="https://www.skrill.com/en/support#/path/SECURITY/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                                                    style="font-family:Arial;font-size:12px;line-height:18px;color:#ffffff;text-decoration:none"
+                                                                    target="_blank"
+                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/support%23/path/SECURITY/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNHTrcK9fuL6iSvoz-00hynZHfu0nA">Security</a>
+                                                            </th>
+                                                            <th class="m_-7623622927351798282stack-items m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center"
+                                                                height="8" width="20" style="display:block;width:20px">
+                                                                &nbsp;</th>
+                                                            <th style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#ffffff;text-align:center;letter-spacing:1px"
+                                                                class="m_-7623622927351798282stack-items m_-7623622927351798282insert-div m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center">
+                                                                <a href="https://www.skrill.com/en/footer/privacypolicy/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                                                    style="font-family:Arial;font-size:12px;line-height:18px;color:#ffffff;text-decoration:none"
+                                                                    target="_blank"
+                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/footer/privacypolicy/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNEsOv-FL9QmZvZGKQ8brfQj5qzyJQ">Privacy</a>
+                                                            </th>
+                                                            <th class="m_-7623622927351798282stack-items m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center"
+                                                                height="8" width="20" style="display:block;width:20px">
+                                                                &nbsp;</th>
+                                                            <th style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#ffffff;text-align:center;letter-spacing:1px"
+                                                                class="m_-7623622927351798282stack-items m_-7623622927351798282show-fallback m_-7623622927351798282stack-column-center">
+                                                                <a href="https://www.skrill.com/en/footer/terms-conditions/skrillaccounttermsofuse/"
+                                                                    style="font-family:Arial;font-size:12px;line-height:18px;color:#ffffff;text-decoration:none"
+                                                                    target="_blank"
+                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/footer/terms-conditions/skrillaccounttermsofuse/&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNF9tKdhfwaTQzf4tcQ2-ymE5JeTWA">Terms</a>
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </th>
+                                            <th class="m_-7623622927351798282gmailfix-h m_-7623622927351798282stack-column-center"
+                                                height="20" width="20" style="width:20px">&nbsp;</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </th>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                <table width="640" height="58" class="m_-7623622927351798282autoh m_-7623622927351798282gmailfix-h"
+                    cellpadding="0" cellspacing="0" border="0" bgcolor="#544c63"
+                    style="width:640px;height:1px;display:none">
+                    <tbody>
+                        <tr>
+                            <td bgcolor="#544c63" valign="top" class="m_-7623622927351798282autoh" width="1" height="1"
+                                style="width:1px;height:1px">
+
+
+                                <div style="display:none;font-size:0;line-height:0;max-height:0;overflow:hidden">
+                                    <form style="border-style:none;border-width:0px" target="_blank">
+                                        <div id="m_-7623622927351798282wrapper" style="background-color:#544c63">
+                                            <table border="0" cellpadding="0" cellspacing="0"
+                                                style="border-collapse:collapse;border-spacing:0;table-layout:fixed;border-bottom-color:#cccccc;border-bottom:1px solid #cccccc"
+                                                width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+
+                                                            <input id="m_-7623622927351798282mobile-checkbox1"
+                                                                style="display:none!important;max-height:0"
+                                                                type="checkbox">
+
+                                                            <table align="center" border="0" cellpadding="0"
+                                                                cellspacing="0"
+                                                                style="border-collapse:collapse;border-spacing:0;margin:auto;min-width:600px"
+                                                                width="600">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <a href="https://www.skrill.com/$lowercase(lookup(LANG_LOCALE))$"
+                                                                                target="_blank"
+                                                                                data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/$lowercase(lookup(LANG_LOCALE))$&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNHHT-XXYkyHkvPBRP7C_lNkgUr7Zw"><img
+                                                                                    src="https://ci5.googleusercontent.com/proxy/IRhQ9mP8BwplvFv25vV8MGTlyavasHuSIkV4eicKk8kxGd-gy_Gs3V8-1pMjKS5ZHx_6rAxSgEWc8Fyu5h4Ns8UEXbjuHhEZOT8Wivb5BW6xR7y03HXcwExMRdeP-nqH1VAy6oj8oYbASRGrYWQ=s0-d-e1-ft#https://www.skrill.com/fileadmin/content/Emails_2015/STRONGVIEW/Images/PoweredByPaysafe.png"
+                                                                                    style="width:210px;height:70px;display:block!important;float:left"
+                                                                                    class="CToWUd"></a>
+                                                                            <label
+                                                                                for="m_-7623622927351798282mobile-checkbox1"
+                                                                                id="m_-7623622927351798282mobile-label-footer"
+                                                                                style="display:none">
+                                                                                <b></b>
+                                                                                <b></b>
+                                                                                <b></b>
+                                                                            </label>
+
+                                                                            <table width="100%" align="center"
+                                                                                border="0" cellpadding="0"
+                                                                                cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding-left:80px">
+                                                                                            <div
+                                                                                                id="m_-7623622927351798282menu-wrapper-footer">
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://www.skrill.com/en/siteinformation/about-us/"
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/siteinformation/about-us/&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNEy7swEMB-pc2Bfk2gyLEIPVj0ZqQ">About</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://www.skrill.com/en/support#/path/Contact-us/1048967322/Contact-us.htm"
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/support%23/path/Contact-us/1048967322/Contact-us.htm&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNFG7JD-84CMCxcUkpiGyaFqvRqXwQ">Support</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://www.skrill.com/en/support#/path/SECURITY/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/support%23/path/SECURITY/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNHTrcK9fuL6iSvoz-00hynZHfu0nA">Security</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://www.skrill.com/en/footer/privacypolicy/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/footer/privacypolicy/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNEsOv-FL9QmZvZGKQ8brfQj5qzyJQ">Privacy</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                                <table align="left"
+                                                                                                    border="0"
+                                                                                                    cellpadding="10"
+                                                                                                    cellspacing="0"
+                                                                                                    style="border-collapse:collapse;border-spacing:0">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td nowrap=""
+                                                                                                                style="font-family:Arial,sans-serif;font-size:13px;line-height:1;text-transform:uppercase;letter-spacing:2px">
+                                                                                                                <a href="https://www.skrill.com/en/footer/terms-conditions/skrillaccounttermsofuse/"
+                                                                                                                    style="color:#575452;line-height:1;text-decoration:none"
+                                                                                                                    target="_blank"
+                                                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/footer/terms-conditions/skrillaccounttermsofuse/&amp;source=gmail&amp;ust=1603846720375000&amp;usg=AFQjCNF9tKdhfwaTQzf4tcQ2-ymE5JeTWA">Terms</a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="padding:20px 30px;font-family:Arial,sans-serif;font-size:9px;line-height:15px;text-align:left;color:#666666">
+                                Copyright © 2020 Skrill Limited. Skrill® is a registered trademark of Skrill Ltd. All
+                                rights reserved.<br><br>
+
+                                Skrill Limited is registered in England and Wales with company number 04260907 and its
+                                registered office is at 25 Canada Square, London E14 5LQ. Authorised and regulated by
+                                the Financial Conduct Authority under the Electronic Money Regulations 2011 (FRN:
+                                900001) for the issuance of electronic money.<br><br>
+                                We use cookies and similar technology in some of our emails which contain hyperlinks,
+                                each of which has a unique tag. They help us to understand a little bit about how you
+                                interact with our emails, and are used to improve our future email communications to
+                                you. If you click on links contained in this email it will allow us to track your use of
+                                our website. For more information about our use of cookies and similar technology please
+                                see our <a href="https://www.paysafe.com/paysafegroup/cookie-policy/"
+                                    style="color:#397ca8;text-decoration:underline" target="_blank"
+                                    data-saferedirecturl="https://www.google.com/url?q=https://www.paysafe.com/paysafegroup/cookie-policy/&amp;source=gmail&amp;ust=1603846720376000&amp;usg=AFQjCNHBT3jzodRtbkHcWz2syY_szcnAuw">Cookies
+                                    Notice</a>.<br><br>
+
+                                In accordance with relevant Data Protection and Privacy laws, Paysafe is committed to
+                                protecting your privacy. If you wish to know more, please access our <a
+                                    href="https://www.skrill.com/en/footer/privacypolicy/?utm_source=strongview&amp;utm_medium=email&amp;utm_campaign=33600"
+                                    style="color:#397ca8;text-decoration:underline" target="_blank"
+                                    data-saferedirecturl="https://www.google.com/url?q=https://www.skrill.com/en/footer/privacypolicy/?utm_source%3Dstrongview%26utm_medium%3Demail%26utm_campaign%3D33600&amp;source=gmail&amp;ust=1603846720376000&amp;usg=AFQjCNEiA8BRqTqH_eNr9bLKDe5QVh-acQ">Privacy
+                                    Policy</a>.<br><br>
+
+                                To ensure that Skrill emails reach your inbox, please add <a
+                                    href="mailto:no-reply@email.skrill.com"
+                                    style="text-decoration:none;font-family:Arial,sans-serif;font-size:9px;line-height:15px;text-align:left;color:#666666"
+                                    target="_blank"><strong>no-reply@email.skrill.com</strong></a> to your email safe
+                                list. <br><br>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td><span style="font-size:6px;color:#ebeff0;margin:auto">RESET_PIN_LINK 33600</span></td>
+        </tr>
+
+    </tbody>
+</body>
+
+</html>

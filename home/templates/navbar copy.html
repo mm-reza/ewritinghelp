@@ -1,0 +1,113 @@
+{% load static %}
+
+
+
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark" id="myHeader">
+    <a class="navbar-brand" href="{% url 'home' %}">Ecom</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact Us <span class="sr-only"></span></a>
+            </li>            
+            <li class="nav-item">
+                <a class="nav-link" href="/product/dollar/14"> Estimate <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""> Top-up <span class="sr-only"></span></a>
+            </li>
+        </ul>
+
+
+
+
+        <div class="form-inline my-2 my-lg-0">
+            <!-- <a href="#" class="btn btn-warning">Login</a> -->
+
+            <div class="nav-item dropdown">
+                {% if user.id is not None %}
+                <div class=" form-inline dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+
+                    <img src="{{ user.userprofile.image.url }}"
+                        style="border-radius:10% ; height: 2.5rem; float: left; margin-right: 15px;">
+
+                    <strong class="text-uppercase btn btn-warning"> {{ user.first_name }} <i
+                            class="fa fa-caret-down"></i></strong>
+                </div>
+                {% else %}
+                <a href="/login" class="text-uppercase; btn btn-warning">Login</a> / <a href="/signup"
+                    class="text-uppercase; btn btn-warning">Register</a>
+                {% endif %}
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a href="/user" class="dropdown-item fa fa-user-o"> My Account</a>
+                    <a href="/shopcart" class="dropdown-item fa fa-check">Checkout</a>
+                    <a href="/logout" class="dropdown-item fa fa-unlock-alt">Logout</a>
+                </div>
+            </div>
+
+
+            <!-- Cart -->
+           
+                <a href="/order/orderproduct">
+                        <i class="fa fa-shopping-cart"></i>
+                        
+                        <span class="qty">{{subtotal}}</span>
+                </a>
+            <!-- /Cart -->
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+        padding: 20px 10px 20px 0px;
+        background-color: #148bca;
+        transition: all ease 0.4s;
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 0px 0px 0px 0px;
+        transition: all ease 0.4s;
+    }
+
+    .dropdown-toggle::after {
+    display:none;
+}
+
+</style>
+
+<script>
+    // Toggle Animation by Class
+    window.onscroll = function () { myFunction() };
+
+    var navbar = document.getElementById("myHeader");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            navbar.classList.add("sticky");
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>

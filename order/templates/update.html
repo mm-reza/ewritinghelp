@@ -1,0 +1,92 @@
+{% load static %}
+<table style="height: 5px;" width="596">
+    <tbody>
+        <tr>
+            <td style="width: 112px;"><strong>Item</strong></td>
+            <td style="width: 112px;"><strong>Price</strong></td>
+            <td style="width: 113px;"><strong>Quantity</strong></td>
+            <td style="width: 113px;"><strong>Total</strong></td>
+        </tr>
+    </tbody>
+</table>
+Hello {{profile}},
+
+<h2>Dear {{ instance.first_name }} {{  user.last_name }}</h2>
+<hr>
+<h3>Your order is completed</h3>
+<h3>Order Code : {{ ordercode }}</h3>
+<h3> Phone : {{ profile.phone }}</h3>
+<h3>Email : {{ profile.address }}</h3>
+<h3>Thank You</h3>
+{{ user.first_name }}
+<hr> {{ user }}
+<hr> {{ user.email }}
+<hr>
+<h3>Thank You</h3>
+
+<hr>
+
+<table style="height: 5px;" width="596">
+    <tbody>
+        <tr>
+            <td style="width: 112px;"><strong>Item</strong></td>
+            <td style="width: 112px;"><strong>Price</strong></td>
+            <td style="width: 113px;"><strong>Quantity</strong></td>
+            <td style="width: 113px;"><strong>Total</strong></td>
+        </tr>
+    </tbody>
+</table>
+{% for rs in products %}
+
+<table style="height: 15px;" width="596">
+    <tbody>
+        <tr>
+            <td style="width: 141px; text-align: left;padding-left: 0;">
+
+                {{rs.products.title}}
+            </td>
+            <td style="width: 142px;">
+                <p>
+                    {% if rs.products.variant == 'None' %}
+                    {{ rs.products.price|floatformat:2 }}
+                    {% else %}
+                    {{ rs.variant.price|floatformat:2 }}
+                    {% endif %}
+                </p>
+            </td>
+            <td style="width: 142px; padding-left: 15px;">
+                <p> {{rs.quantity}}</p>
+            </td>
+            <td style="width: 142px;"><p>$ {{rs.amount}}</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endfor %}
+<p>&nbsp;</p>
+<table style="height: 84px;" width="596">
+    <tbody>
+        <tr>
+            <td style="width: 141px;">&nbsp;</td>
+            <td style="width: 141px;">&nbsp;</td>
+            <td style="width: 142px;">&nbsp;TOTAL ITEAMS</td>
+            <td style="width: 142px;">&nbsp;{{ subtotal}}</td>
+        </tr>
+        <tr>
+            <td style="width: 141px;">&nbsp;</td>
+            <td style="width: 141px;">&nbsp;</td>
+            <td style="width: 142px;">&nbsp;SHIPPING</td>
+            <td style="width: 142px;">&nbsp;FREE</td>
+        </tr>
+        <tr>
+            <td style="width: 141px;">&nbsp;</td>
+            <td style="width: 141px;">&nbsp;</td>
+            <td style="width: 142px;">&nbsp;TOTAL</td>
+            <td style="width: 142px;">&nbsp;{{instance.total}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<hr>

@@ -1,0 +1,227 @@
+{% load static %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="align-content-end">
+
+  <div class="container" style="padding-top: 20px;">
+    <div class="row">
+
+      <div class="col-md-6" style="padding-bottom: 10px;">
+        <h1>Better Solutions For Your Business</h1>
+        <h2>We are team of talanted designers making websites with Bootstrap</h2>
+        <div class="d-lg-flex">
+          <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4" style="padding: 10px;">
+
+        {% for rs in var %}
+
+        <div class="box-element" style="border-radius: 4px;">
+          <form onclick="pass()" name="form1" action="/product/dollar/14">
+
+            <h6
+              style="border-radius: 4px; background: #37517e; color:white;font-size: 16px; text-align: center; padding:15px;">
+              Estimate latest USD Exchange Rate</h6>
+            <hr>
+            <div class="input-group d-flex align-items-center">
+              <div class="center">$</div>
+              <input class="form-control center" name="estimate" value="3" min="3" max="{{ variant.quantity }}"
+                id="estimate" type="number" />
+              <div class="center">.00</div>
+            </div>
+
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
+              <label class="custom-control-label" for="customControlValidation1">Check this custom checkbox</label>
+            </div>
+
+            <input class="btn-block"
+              style=" border: none; border-radius: 4px; background: #37517e; color:white;font-weight:600; text-align: center; padding:5px;"
+              type="submit" value="Submit" />
+
+          </form>
+        </div>
+
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section><!-- End Hero -->
+
+<style>
+  /*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+  #hero {
+    width: 100%;
+    background: #37517e;
+
+  }
+
+  #hero .container {
+    padding-top: 72px;
+  }
+
+  #hero h1 {
+    margin: 0 0 10px 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+  }
+
+  #hero h2 {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 50px;
+    font-size: 24px;
+  }
+
+  #hero .btn-get-started {
+    font-family: "Jost", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 28px 11px 28px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px 0 0 0;
+    color: #fff;
+    background: #47b2e4;
+  }
+
+  #hero .btn-get-started:hover {
+    background: #209dd8;
+  }
+
+  #hero .btn-watch-video {
+    font-size: 16px;
+    display: inline-block;
+    padding: 10px 0 8px 40px;
+    transition: 0.5s;
+    margin: 10px 0 0 25px;
+    color: #fff;
+    position: relative;
+  }
+
+  #hero .btn-watch-video i {
+    color: #fff;
+    font-size: 32px;
+    position: absolute;
+    left: 0;
+    top: 7px;
+    transition: 0.3s;
+  }
+
+  #hero .btn-watch-video:hover i {
+    color: #47b2e4;
+  }
+
+
+
+  /*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+  section {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  .section-bg {
+    background-color: #f3f5fa;
+  }
+
+
+
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #37517e;
+  }
+
+  .section-title h2::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+  }
+
+  .section-title h2::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #47b2e4;
+    bottom: 0;
+    left: calc(50% - 20px);
+  }
+
+  .section-title p {
+    margin-bottom: 0;
+  }
+
+  /*--------------------------------------------------------------
+# End Hero Section
+--------------------------------------------------------------*/
+  .box-element {
+    box-shadow: hsl(0, 58%, 37%) 0 0 5px;
+  }
+
+  .navbar-brand,
+  .nav-link {
+    font-size: 18px;
+  }
+
+  .form-control:focus {
+    box-shadow: none;
+  }
+
+  .center {
+    font-family: "Jost", sans-serif;
+    font-weight: 700;
+    color: #37517e;
+    text-align: center;
+    font-size: 40px;
+  }
+
+</style>
+
+<script>
+  function pass() {
+    var dollar = document.getElementById("estimate").value;
+    localStorage.setItem("estval", dollar);
+    return false;
+  }
+
+  function phonenumber(inputtxt) {
+    if ((inputtxt.value % 1) == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  $(document).ready(function () {
+    $("input").keypress(function () {
+      if ($(this).val().length == 5)
+        return false;
+    })
+  });
+</script>

@@ -1,0 +1,101 @@
+{% load static %}
+
+
+<section id="slider" class="d-flex align-items-center">
+
+    <table class="container">
+        <tr id="home">
+            <td>
+
+                <div>
+                    <div>
+                        <img class="align-self-center" src="{%  static 'images/world.svg' %}"
+                            style="width: auto ; height: 300px" alt="">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <h2 class=""> Exchange rates you will love </h2>
+                    <p>Send money online and take advantage of some of the best rates around.</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</section>
+
+
+<section id="send" class="d-flex align-items-center">
+
+    <table class="container">
+        <tr id="home">
+            <td>
+                <div>
+                    <h2 class=""> Send money to someone’s email address </h2>
+                    <p>Don’t worry if you don’t have your recipient’s bank account details – simply send money to their
+                        email address. You can choose from 40 different currencies and the money will be available
+                        instantly. Your recipient can spend the funds wherever Skrill is accepted or withdraw them to
+                        their bank account.</p>
+                    <p><a href="" target="_blank" class="btn btn-success">Sign up now</a></p>
+                </div>
+            </td>
+            <td>
+
+                <div>
+                    <div>
+                        <img class="align-self-center" src="{%  static 'images/world.svg' %}"
+                            style="width: auto ; height: 300px" alt="">
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+</section>
+
+<section id="trusted" class="container">
+    <div style="position: absolute; left: 20%;">
+      <h2>Trusted by over 1 million users globally </h2>
+    </div>
+  
+    <div style="display: block;"><img src="//images.ctfassets.net/vm4sgchw7ymt/2af2h4HcOczfoiIy7Hkmbr/8cc28799b83db2d782c1f9e2be51883e/globe-desktop-compressed.png">
+    </div>
+  
+</section>
+
+
+
+
+<style>
+    #slider {
+        background-color: rgb(235, 225, 225);
+        height: 100vh;
+        width: 100vw;
+    }
+
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f00' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+    }
+
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f00' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    }
+
+    .carousel .carousel-indicators li {
+        background-color: #fff;
+        background-color: rgba(70, 70, 70, .25);
+    }
+
+    .carousel .carousel-indicators .active {
+        background-color: #444;
+    }
+</style>

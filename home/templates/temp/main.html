@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+	<title> {% block title %} Ecommerce {% endblock %} </title>
+	<meta name="keyworkds" content="{% block keyworkds %} home keyworkds {% endblock %}">
+	<meta name="description" content="{% block description %} home description {% endblock %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+	{% block head %} {% endblock %}
+
+</head>
+
+<body>
+
+	<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark" id="myHeader">
+		<a class="navbar-brand" href="{% url 'home' %}">Ecom</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="{% url 'home' %}">Store <span class="sr-only">(current)</span></a>
+				</li>
+
+			</ul>
+			<div class="form-inline my-2 my-lg-0">
+				<!-- <a href="#" class="btn btn-warning">Login</a> -->
+
+				<div class="nav-item dropdown">
+					{% if user.id is not None %}
+					<div class=" form-inline dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+
+						<img src="{{ user.userprofile.image.url }}"
+							style="border-radius:10% ; height: 2.5rem; float: left; margin-right: 15px;">
+
+						<strong class="text-uppercase btn btn-warning"> {{ user.first_name }} <i
+								class="fa fa-caret-down"></i></strong>
+					</div>
+					{% else %}
+					<a href="/login" class="text-uppercase; btn btn-warning">Login</a> / <a href="/signup"
+						class="text-uppercase; btn btn-warning">Register</a>
+					{% endif %}
+
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a href="/user" class="dropdown-item fa fa-user-o"> My Account</a>
+						<a href="/shopcart" class="dropdown-item fa fa-check">Checkout</a>
+						<a href="/logout" class="dropdown-item fa fa-unlock-alt">Logout</a>
+					</div>
+				</div>
+
+				<a href="{% url 'shopcart' %}">
+					<img id="cart-icon" src="{% static 'images/cart.png' %}">
+				</a>
+				<p id="cart-total">{{cartItems}}</p>
+			</div>
+		</div>
+	</nav>
+
+
+
+	<div class="container">
+		<br>
+		{% block body %}
+		{% endblock body %}
+
+		{% block shopcart %}
+		{% endblock shopcart %}
+
+		{% block content %}
+		{% endblock content %}
+	</div>
+
+	<style>
+		body {
+			margin: 0;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.navbar {
+			padding: 20px 10px 20px 0px;
+			background-color: #28a7e9;
+			transition: all ease 0.4s;
+		}
+
+		.sticky {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			padding: 0px 0px 0px 0px;
+			transition: all ease 0.4s;
+		}
+	</style>
+
+	<script>
+		// Toggle Animation by Class
+		window.onscroll = function () { myFunction() };
+
+		var navbar = document.getElementById("myHeader");
+		var sticky = navbar.offsetTop;
+
+		function myFunction() {
+			if (window.pageYOffset > sticky) {
+				navbar.classList.add("sticky");
+			} else {
+				navbar.classList.remove("sticky");
+			}
+		}
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+{% extends 'homebase.html' %}
+{% load static %}
+{% block title %} {{ product.title }} {% endblock %}
+{% block description %} {{ product.description }} {% endblock %}
+{% block keywords %} {{ product.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+<!-- row -->
+<div class="row justify-content-center" style="padding-top: 40px">
+    <!--  Product Details -->
+
+    <div class="col-md-6 box-element">
+        <div class="product-body" style="padding-left: 20px; padding-right: 15px;">
+            <div class="product-label">
+                <span>New</span>
+                <span class="sale">-20%</span>
+            </div>
+            <h2 class="product-name">{{ product.title }}</h2>
+
+            <script>
+                $(document).on('change', '#post-form', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "ajaxcolor" %}',
+                        data: {
+                            productid: $('#productid').val(),
+                            size: $('#size').val(),
+                            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                            action: 'post'
+                        },
+                        data_type: 'html',
+                        success: function (data) {
+                            console.log("success");
+                            $('#appendHere').html(data.rendered_table);
+                        },
+                        error: function (data) {
+                            alert("Got an error dude " + data);
+                        }
+                    });
+                });
+            </script>
+
+
+            <div class="product-btns">
+
+
+                <div class="product-options">
+
+
+                    <div class="size-option">
+
+                        <form method="POST" id="post-form">
+
+                            <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
+                            <label class="text-uppercase">Send us :</label>
+                            {% csrf_token %}
+                            <select name="size" id="size" class=" box-element form-control"
+                                style="width: 100%; height: 55px">
+                                {% for rs in sizes %}
+                                <option {% if variant.size_id == rs.size_id %} selected {% endif %}
+                                    value="{{ rs.size_id }}">{{ rs.size.name }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </form>
+                    </div>
+
+
+
+                    <form method="post" action="?q=selectvariant" id="post-color">
+                        {% csrf_token %}
+                        <div id="appendHere">
+                            <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                            <ul class="color-option">
+                                <li><label class="text-uppercase">Receive in:</label></li>
+
+                                {% for rs in colors %}
+
+                                <input type="radio" class="button" {% if variant.id == rs.id %} checked {% endif %}
+                                    name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();"
+                                    onsubmit="return false" onchange="return false" >
+                                <li {% if variant.id == rs.id %} class="active" {% endif %}>
+                                    <label style="height: 20px; width: auto; border-style: hidden;">
+                                        {{ rs.color }}
+                                    </label>
+                                    <!-- <img src="{{ rs.image }}" style="height: 50px"> -->
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+
+
+                <p><strong>Exchange from {{ variant.size }} to {{ variant.color }}</strong></p>
+
+
+                <form action="/order/addtoshopcart/{{ product.id }}" method="post" id="addchart-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="variantid" id="variantid" value="{{ variant.id }}">
+                    <div id="SelectedProduct">
+
+                        <label class="text-uppercase" style="padding-bottom: 0; margin-bottom: 0;">SEND AMOUNT: </label>
+                        <div class="box-element qty-input" style="width: auto; height: 55px">
+                            <input class="form-control d-flex justify-content" name="quantity" min="1"
+                                max="{{ variant.quantity }}" id="inputPounds" type="number"
+                                 onclick="weightConverter(valNum)" oninput="weightConverter(this.value)"
+                                oninput="output(this.value)" onchange="output(this.value);"
+                                onchange="weightConverter(this.value)">
+
+                        </div>
+                        <p style="position: static;">RECEIVE AMOUNT: <span class="box-element d-flex justify-content"
+                                style="width: auto; height: 55px" id="outputKilograms"></span></p>
+
+                        <hr>
+                        <input class=" box-element d-flex justify-content" name="output" min="1"
+                            max="{{ variant.quantity }}" id="output" type="number">
+
+                        <input id="myButton" class="btn btn-success btn-block" type="submit"
+                            value="Place Order" onclick="document.location.href='/order/orderproduct/';"> 
+                        <hr>
+
+                    </div>
+                </form>
+
+                <input id="price" value={{variant.price}} type="number" hidden>                
+                <script>
+                    document.getElementById("inputPounds").value = localStorage.getItem("estval");
+                    var loc = localStorage.getItem("estval");
+                    var dollar =document.getElementById("inputPounds").value;
+                    function set(){
+                            localStorage.removeItem("estval");
+                            localStorage.setItem("new", dollar);
+                            document.getElementById("inputPounds").value = localStorage.getItem("new");                         
+                    }
+                </script>
+
+                <script>
+                    var x = document.getElementById('price').value;
+
+                    function weightConverter(valNum) {
+                        document.getElementById("outputKilograms").innerHTML = valNum * x;
+                    }
+                    var count = [].reduce.call(valueelements, function (c, v) {
+                        return c + parseFloat(v.innerHTML);
+                    }, 0);
+                </script>
+
+
+                <p>
+                    <label>Send:</label>
+                    <input id="inputFeet" type="number" placeholder="Feet" oninput="LengthConverter(this.value)"
+                        onchange="LengthConverter(this.value)">
+                </p>
+                <p>Receive: <input id="outputMeters"></p>
+
+                <script>
+                    document.getElementById("inputFeet").value = localStorage.getItem("estval");
+                    document.getElementById("outputMeters").value = document.getElementById("inputFeet").value * x;
+                    function LengthConverter(valNum) {
+                        document.getElementById("outputMeters").value = valNum * x;
+                    }
+                </script>
+
+
+                <script>
+                    $(document).ready(function () {
+                        $("input").keypress(function () {
+                            if ($(this).val().length == 5)
+                                return false;
+                        })
+                    });
+                </script>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<style>
+    .label {
+        display: inline-block;
+        width: 80px;
+        text-align: right;
+        border: 0px;
+
+    }
+
+    .form-control {
+        border: 0;
+    }
+
+    .input {
+        border: 0;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    select.form-control {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+</style>
+
+{% endblock %}

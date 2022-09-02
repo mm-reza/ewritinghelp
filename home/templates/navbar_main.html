@@ -1,0 +1,146 @@
+{% load static %}
+
+<header id="header">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark" id="myHeader">
+        <a class="navbar-brand " href="{% url 'home' %}">Ecom</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto">
+                <div class="form-inline">
+                    <a class="nav-link" style="padding-right: 20px;" href="/contact">Contact Us </a>
+
+                    <a class="nav-link" style="padding-right: 20px;" href="/product/dollar/14"> Estimate </a>
+
+                    <a class="nav-link" style="padding-right: 20px;" href=""> Top-up</a>
+                </div>
+            </div>
+
+            <div class="form-inline my-2 my-lg-0">
+                <!-- <a href="#" class="btn btn-warning">Login</a> -->
+
+                <div class="nav-item ">
+                    {% if user.id is not None %}
+                    <div>
+                        <img src="{{ user.userprofile.image.url }}"
+                            style="border-radius:100% ; height: 3rem; width: 3rem; float: left; margin-right: 15px;">
+                        <a href="/user" class="text-uppercase; get-started-btn">{{ user.first_name }}</a>
+                        <a href="/shopcart" class="text-uppercase; get-started-btn">Checkout</a>
+                        <a href="/logout" class="text-uppercase; get-started-btn">Logout</a>
+                    </div>
+                    {% else %}
+                    <a href="/login" class="text-uppercase; get-started-btn">Login</a>
+                    <a href="/signup" class="text-uppercase; get-started-btn">Register</a>
+                    {% endif %}
+                </div>
+
+
+                <!-- Cart -->
+
+                <a href="/order/orderproduct">
+                    <i class="fa fa-shopping-cart"></i>
+
+                    <span class="qty">{{subtotal}}</span>
+                </a>
+                <!-- /Cart -->
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+
+    .bg-dark {
+        background-color: #37517e !important;
+    }
+
+    .navbar {
+        padding: 20px 10px 20px 0px;
+        transition: all ease 0.4s;
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 0px 0px 0px 0px;
+        transition: all ease 0.4s;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    /* Get Startet Button */
+    .get-started-btn {
+        text-align: center;
+        line-height: 30px;
+        margin-left: 5px;
+        color: #fff;
+        border-radius: 50px;
+        padding: 3px 15px 5px 15px;
+        white-space: nowrap;
+        transition: 0.3s;
+        font-size: 14px;
+        display: inline-block;
+        border: 2px solid #47b2e4;
+        background-color: #37517e;
+    }
+
+    .get-started-btn:hover {
+        background: #31a9e1;
+        color: #fff;
+    }
+
+    /*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+    #header {
+        transition: all 0.5s;
+        z-index: 997;
+        padding: 15px 0;
+    }
+
+    #header.header-scrolled,
+    #header.header-inner-pages {
+        background: rgba(40, 58, 90, 0.9);
+    }
+
+    #header .logo {
+        font-size: 30px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    #header .logo a {
+        color: #fff;
+    }
+
+    #header .logo img {
+        max-height: 40px;
+    }
+</style>
+
+
+<script>
+    // Toggle Animation by Class
+    window.onscroll = function () { myFunction() };
+
+    var navbar = document.getElementById("myHeader");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            navbar.classList.add("sticky");
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>

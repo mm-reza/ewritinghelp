@@ -1,0 +1,109 @@
+{% extends 'homebase.html' %}
+{% load i18n %}
+{% block title %} Contact Us-{{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" style="padding-top: 30px;">
+    <div class="container">
+        <ul class="breadcrumb">
+
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="text-uppercase">Write Your Review</h4>
+    
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+    
+                <form class="review-form" action="/order/addtocart/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input name="subject" class="input" type="text" placeholder="Your subject" />
+                    </div>
+    
+                    <div class="form-group">
+                        <textarea name="reply" class="input" placeholder="Your review"></textarea>
+                    </div>
+    
+                    <div class="form-group">
+                        <input id="id_image" type="file" class="" name="image">
+                    </div>
+    
+                    {% if user.id is not None %}
+                    <button class="primary-btn" >Submit</button>
+                    {% else %}
+                    You must be logged in to post a review
+                    {% endif %}
+                </form>
+    
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+<style>
+    input,
+    textarea {
+        width: 100%;
+        padding: 5px !important;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border-radius: 3px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgb(169, 169, 169)
+    }
+
+    input {
+        height: 30px;
+    }
+
+
+    body {
+        background: linear-gradient(45deg, #da8970,  #72b6ddce, #8c999e, #45f193);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+
+
+{% endblock %}

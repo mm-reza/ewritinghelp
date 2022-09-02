@@ -1,0 +1,251 @@
+{% extends 'homebase.html' %}
+{% load static %}
+{% block title %} {{ product.title }} {% endblock %}
+{% block description %} {{ product.description }} {% endblock %}
+{% block keywords %} {{ product.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+<!-- row -->
+<div class="row justify-content-center" style="padding-top: 40px">
+    <!--  Product Details -->
+
+    <div class="col-md-6 box-element">
+        <div class="product-body" style="padding-left: 20px; padding-right: 15px;">
+            <div class="product-label">
+                <span>New</span>
+                <span class="sale">-20%</span>
+            </div>
+            <h2 class="product-name">{{ product.title }}</h2>
+
+            <script>
+                $(document).on('change', '#post-form', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "ajaxcolor" %}',
+                        data: {
+                            productid: $('#productid').val(),
+                            size: $('#size').val(),
+                            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                            action: 'post'
+                        },
+                        data_type: 'html',
+                        success: function (data) {
+                            console.log("success");
+                            $('#appendHere').html(data.rendered_table);
+                        },
+                        error: function (data) {
+                            alert("Got an error dude " + data);
+                        }
+                    });
+                });
+            </script>
+
+
+            <div class="row">
+                <div class=" font col-md-3 d-flex align-items-center">
+                    SEND US :
+                </div>
+
+                <div class="col-md-9">
+                    <form method="POST" id="post-form">
+
+                        <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
+                        {% csrf_token %}
+                        <select name="size" id="size" class=" box-element form-control d-flex align-items-center"
+                            style="width: 100%; height: 55px">
+                            {% for rs in sizes %}
+                            <option {% if variant.size_id == rs.size_id %} selected {% endif %}
+                                value="{{ rs.size_id }}">
+                                {{ rs.size.name }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+
+                <div class="font col-md-3 d-flex align-items-center">
+                    RECEIVE IN :
+                </div>
+                <div class="col-md-9 option">
+                    <form method="post" action="?q=selectvariant" id="post-color">
+                        {% csrf_token %}
+                        <div id="appendHere">
+                            <input type="hidden" name="size" id="size" value="{{ size_id }}">
+                            <ul class="color-option box-element d-flex align-items-center"
+                                style="width: 100%; height: 55px">
+                                {% for rs in colors %}
+                                <input type="radio" class="button" {% if variant.id == rs.id %} checked {% endif %}
+                                    name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();"
+                                    onsubmit="return false" onchange="return false">
+                                <li {% if variant.id == rs.id %} class="active" {% endif %}>
+                                    <div style="padding-top:7px; padding-left: 5px;">
+                                        {{ rs.color }}
+                                    </div>
+                                    <!-- <img src="{{ rs.image }}" style="height: 50px"> -->
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <p><strong>Exchange from {{ variant.size }} to {{ variant.color }}</strong></p>
+
+            <form action="/order/addtoshopcart/{{ product.id }}" method="post" id="addchart-form">
+                {% csrf_token %}
+                <input type="hidden" name="variantid" id="variantid" value="{{ variant.id }}">
+                <div id="SelectedProduct">
+
+                    <div class="row">
+
+                        <div class="col-md-3 d-flex align-items-center">
+                            <label class="font text-uppercase" style="padding-bottom: 0; margin-bottom: 0;">SEND AMOUNT:
+                            </label>
+                        </div>
+                        <div class="col-md-9 ">
+                            <div class="qty-input">
+                                <input class="convert box-element form-control d-flex justify-content"
+                                    style="width: 100%; height: 55px" name="quantity" min="1"
+                                    max="{{ variant.quantity }}" id="inputFeet" type="number"
+                                    oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-3 d-flex align-items-center">
+
+                            <label class="font text-uppercase" style="padding-bottom: 0; margin-bottom: 0;">Receive AMOUNT:
+                            </label>
+                        </div>
+                        <div class="col-md-9">
+                            <input class="convert form-control box-element d-flex justify-content"
+                                style="width: 100%; height: 55px" id="outputMeters">
+
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <input id="myButton" class="btn btn-success btn-block" type="submit" value="Place Order"
+                        onclick="document.location.href='/order/orderproduct/';">
+                    <hr>
+
+                </div>
+
+            </form>
+
+            <input id="price" value={{variant.price}} type="number" hidden>
+            <script>
+                var x = document.getElementById('price').value;
+
+                function weightConverter(valNum) {
+                    document.getElementById("outputKilograms").value = valNum * x;
+                }
+                var count = [].reduce.call(valueelements, function (c, v) {
+                    return c + parseFloat(v.value);
+                }, 0);
+            </script>
+
+
+            <!--             <p>
+                <label>Send:</label>
+                <input id="inputFeet" type="number" placeholder="Feet" oninput="LengthConverter(this.value)"
+                    onchange="LengthConverter(this.value)">
+            </p>
+            <p>Receive: <input id="outputMeters"></p> -->
+
+            <script>
+                document.getElementById("inputFeet").value = localStorage.getItem("estval");
+                document.getElementById("outputMeters").value = document.getElementById("inputFeet").value * x;
+                function LengthConverter(valNum) {
+                    document.getElementById("outputMeters").value = valNum * x;
+                    localStorage.setItem("estval", document.getElementById("inputFeet").value);
+                    return false;
+                }
+            </script>
+
+
+            <script>
+                $(document).ready(function () {
+                    $("input").keypress(function () {
+                        if ($(this).val().length == 5)
+                            return false;
+                    })
+                });
+            </script>
+
+
+
+
+        </div>
+    </div>
+
+
+
+</div>
+
+<style>
+    .label {
+        display: inline-block;
+        width: 80px;
+        text-align: right;
+        border: 0px;
+
+    }
+
+    .form-control{
+        border: 0;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .option, .font{
+        font-size: 15px;
+        font-weight:bold;
+    }
+    .convert{
+        font-size: 30px;
+    }
+
+
+    .form-control:focus{
+    outline: none !important;
+    border:transparent;
+    box-shadow: 0 0 10px #c01120;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;   
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    select.form-control {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+</style>
+
+{% endblock %}

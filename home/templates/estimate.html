@@ -1,0 +1,482 @@
+{% load static %}
+
+<!-- ======= Estimate Section ======= -->
+<section id="estimate">
+    <!-- row -->
+    <div class="row justify-content-center" style="padding-top: 80px; padding-bottom: 40px;">
+        <!--  Product Details -->
+
+        <div class="col-md-6 box-element" style="padding-left: 15px; padding-right: 15px;">
+            <div class="product-body" style="padding:0">
+                <script>
+                    $(document).on('change', '#post-form', function (e) {
+                        e.preventDefault();
+                        $.ajax({
+                            type: 'POST',
+                            url: '{% url "ajaxcolor" %}',
+                            data: {
+                                productid: $('#productid').val(),
+                                size: $('#size').val(),
+                                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                                action: 'post'
+                            },
+                            data_type: 'html',
+                            success: function (data) {
+                                console.log("success");
+                                $('#appendHere').html(data.rendered_table);
+                            },
+                            error: function (data) {
+                                alert("Got an error dude " + data);
+                            }
+                        });
+                    });
+                </script>
+
+
+                <div class="row" style="margin: 0;">
+                    <div class="font col-md-4">
+                        SEND US
+                        <form method="POST" id="post-form">
+
+                            <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
+                            {% csrf_token %}
+                            <select name="size" id="size" class=" box-element form-control" style="height: 55px;">
+                                {% for rs in sizes %}
+
+                                <option {% if variant.size_id == rs.size_id %} selected {% endif %}
+                                    value="{{ rs.size_id }}">
+                                    {{ rs.size.name }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </form>
+                    </div>
+                    <br>
+                    <div class="col-md-8 option">
+                        RECEIVE IN
+                        <form method="post" action="?q=selectvariant" id="post-color">
+                            {% csrf_token %}
+                            <div id="appendHere">
+                                <input type="hidden" name="size" value="{{ size_id }}">
+                                <ul class="color-option box-element d-flex align-items-center justify-content-center"
+                                    style="padding: 0; height: 55px; ">
+                                    {% for rs in colors %}
+                                    <div class="form-check d-flex align-items-center" style="padding-left: 0;">
+                                        <input type="radio" class="button" {% if variant.id == rs.id %} checked
+                                            {% endif %} name="variantid" value="{{ rs.id }}"
+                                            onchange="this.form.submit();" onsubmit="return false"
+                                            onchange="return false">
+                                    </div>
+                                    <li {% if variant.id == rs.id %} class="active" {% endif %}
+                                        style="padding-right: 10px;">
+
+                                        {{ rs.color }}
+                                        <!-- <img src="{{ rs.image }}" style="height: 50px"> -->
+                                    </li>
+
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <br>
+
+
+                <p style="padding-left: 15px;"><strong>Exchange from {{ variant.size }} to {{ variant.color }}</strong>
+                </p>
+
+                <form action="/order/addtoshopcart/{{ product.id }}" method="post" id="addchart-form"
+                    onsubmit="document.location.href='/order/orderproduct/'">
+                    {% csrf_token %}
+                    <input type="hidden" name="variantid" value="{{ variant.id }}">
+                    <div id="SelectedProduct">
+
+                        <div class="row" style="padding: 15px;">
+
+                            <div class="col-md-4" style="padding-bottom: 10px;">
+                                <div class="qty-input">
+                                    <input class="convert box-element form-control d-flex justify-content"
+                                        style="width: 100%; height: 55px" name="quantity" min="3"
+                                        max="{{ variant.quantity }}" id="inputFeet" type="number"
+                                        oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="convert form-control box-element d-flex justify-content"
+                                    style="width: 100%; height: 55px" id="outputMeters" disabled>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <div style="padding: 15px;">
+                            <hr>
+
+                            <input id="myButton" class="btn btn-success btn-block" type="submit" value="Place Order">
+                            <hr>
+                        </div>
+                    </div>
+
+                </form>
+
+                <input id="price" value={{variant.price}} type="number" hidden>
+                <script>
+                    var x = document.getElementById('price').value;
+
+                    function weightConverter(valNum) {
+                        document.getElementById("outputKilograms").value = valNum * x;
+                    }
+
+                </script>
+
+
+                <!--             <p>
+                <label>Send:</label>
+                <input id="inputFeet" type="number" placeholder="Feet" oninput="LengthConverter(this.value)"
+                    onchange="LengthConverter(this.value)">
+            </p>
+            <p>Receive: <input id="outputMeters"></p> -->
+
+                <script>
+                    document.getElementById("inputFeet").value = localStorage.getItem("estval");
+                    document.getElementById("outputMeters").value = document.getElementById("inputFeet").value * x;
+                    function LengthConverter(valNum) {
+                        document.getElementById("outputMeters").value = valNum * x;
+                        localStorage.setItem("estval", document.getElementById("inputFeet").value);
+                        return false;
+                    }
+                </script>
+
+
+                <script>
+                    $(document).ready(function () {
+                        $("input").keypress(function () {
+                            if ($(this).val().length == 5)
+                                return false;
+                        })
+                    });
+
+                </script>
+
+
+
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h4 class="text-uppercase">Write Your Review</h4>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form class="review-form" action="/user/reply/{{ order.id }}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input name="subject" class="input" type="text" placeholder="Your subject" />
+                </div>
+
+                <div class="form-group">
+                    <textarea name="reply" class="input" placeholder="Your review"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input id="id_image" type="file" class="" name="image">
+                </div>
+
+                {% if user.id is not None %}
+                <button class="primary-btn" >Submit</button>
+                {% else %}
+                You must be logged in to post a review
+                {% endif %}
+            </form>
+
+        </div>
+
+    </div>
+
+    <style>
+        .pad {
+            padding: 1%;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        #outputMeters {
+            background: inherit;
+        }
+
+        select,
+        option {
+            text-align: center;
+            text-align-last: center;
+        }
+    </style>
+</section>
+
+
+<div class="main">
+    <div class="slider slider-for">
+        <div>
+            <h3>1</h3>
+        </div>
+        <div>
+            <h3>2</h3>
+        </div>
+        <div>
+            <h3>3</h3>
+        </div>
+        <div>
+            <h3>4</h3>
+        </div>
+        <div>
+            <h3>5</h3>
+        </div>
+    </div>
+</div>
+
+<div class="slider demo">
+    {% for rs in colors %}
+
+    <li style="background-color: burlywood;" class="box-element" {% if variant.id == rs.id %} class="active" {% endif %}
+        style="padding-right: 10px;">
+
+        {{ rs.color }}
+        <img src="{{ rs.image }}" style="height: 50px">
+    </li>
+
+    {% endfor %}
+</div>
+
+
+<div class="circle-wrapper">
+    <div class="success circle"></div>
+    <div class="icon">
+        <i class="fa fa-check"></i>
+    </div>
+</div>
+
+<div class="circle-wrapper">
+    <div class="warning circle"></div>
+    <div class="icon">
+        <i class="fa fa-exclamation"></i>
+    </div>
+</div>
+
+<div class="circle-wrapper">
+    <div class="error circle"></div>
+    <div class="icon">
+        <i class="fa fa-times"></i>
+    </div>
+</div>
+
+<div>
+    <div class="single">
+        <div>your content 1</div>
+        <div>your content 2</div>
+        <div>your content 3</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.single').slick(
+            {
+                autoplay: true,
+                autoplaySpeed: 2000,
+                fade:true,
+            }
+        );
+    });
+</script>
+
+<div class="constant-simple-slider" style="padding-left: 50%;" id="simple"
+    data-slick='{"slidesToShow": 6, "slidesToScroll": 1, "infinite": true, "arrows":false, "autoplay":true, "autoplaySpeed":0, "responsive":[{"breakpoint": 768, "settings":{"slidesToShow":4 }},{"breakpoint": 480, "settings":{"slidesToShow":4 }}]}'>
+    <div>
+        <img src="https://placehold.it/100/ff00ff">
+    </div>
+    <div>
+        <img src="https://placehold.it/100/ffccff">
+    </div>
+    <div>
+        <img src="https://placehold.it/100/ff22ff">
+    </div>
+    <div>
+        <img src="https://placehold.it/100/2200ff">
+    </div>
+    <div>
+        <img src="https://placehold.it/100/220022">
+    </div>
+    <div>
+        <img src="https://placehold.it/100/2222ee">
+    </div>
+    <div>
+        <img src="https://placehold.it/100/ff00ff">
+    </div>
+    <div>
+        <img src="https://placehold.it/100/ffccff">
+    </div>
+    <div>
+        <img src="https://placehold.it/350/ff22ff">
+    </div>
+    <div>
+        <img src="https://placehold.it/350/2200ff">
+    </div>
+    <div>
+        <img src="https://placehold.it/350/220022">
+    </div>
+    <div>
+        <img src="https://placehold.it/350/2222ee">
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('.demo').slick({
+            speed: 3000,
+            autoplay: true,
+            autoplaySpeed: false,
+            cssEase: 'linear',
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            infinite: true,
+            swipeToSlide: true,
+            centerMode: true,
+            pauseOnHover: true,
+            focusOnSelect: true,
+            responsive: [
+                {
+                    breakpoint: 750,
+                    settings: {
+                        slidesToShow: 3,
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                }
+            ]
+        });
+    });
+    $(document).ready(function () {
+        $('.slider-for').slick({
+            autoplay: true,
+            autoplaySpeed: 0,
+            speed: 5000,
+            pauseOnHover: true,
+            pauseOnFocus: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('.constant-simple-slider').slick({
+            pauseOnHover: true,
+            focusOnSelect: true,
+            cssEase: 'linear',
+            speed: 2000,
+            autoPlay: false,
+            fade: true,
+        });
+    });
+</script>
+<style>
+    .demo {
+        background: #fff;
+        color: #3498db;
+        font-size: 36px;
+        line-height: 100px;
+        margin: 10px;
+        padding: 2%;
+        position: relative;
+        text-align: center;
+    }
+
+    h3 {
+        background: rgb(133, 22, 22);
+        color: #3498db;
+        font-size: 36px;
+        line-height: 100px;
+        margin: 10px;
+        padding: 2%;
+        position: relative;
+        text-align: center;
+    }
+
+    #simple .div {
+        padding-right: 10px;
+
+    }
+
+
+    .circle-wrapper {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin: 10px;
+    }
+
+    .icon {
+        position: absolute;
+        color: #fff;
+        font-size: 55px;
+        top: 55px;
+        left: 55px;
+        transform: translate(-50%, -50%);
+    }
+
+    .circle {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        padding: 2.5px;
+        background-clip: content-box;
+        animation: spin 10s linear infinite;
+    }
+
+    .circle-wrapper:active .circle {
+        animation: spin 2s linear infinite;
+    }
+
+    .success {
+        background-color: #4BB543;
+        border: 2.5px dashed #4BB543;
+    }
+
+    .error {
+        background-color: #CA0B00;
+        border: 2.5px dashed #CA0B00;
+    }
+
+    .warning {
+        background-color: #F0D500;
+        border: 2.5px dashed #F0D500;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+</style>

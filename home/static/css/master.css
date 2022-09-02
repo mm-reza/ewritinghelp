@@ -1,0 +1,48 @@
+.form-control:focus {
+	outline: none !important;
+	border: transparent;
+	box-shadow: 0 0 10px #c01120;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+select.form-control {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.label {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+	border: 0px;
+
+}
+
+.form-control {
+	border: 0;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.option,
+.font {
+	font-size: 15px;
+	font-weight: bold;
+ }
+
+.convert {
+	font-size: 30px;
+}
+

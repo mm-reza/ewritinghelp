@@ -1,0 +1,196 @@
+{% extends 'homebase.html' %}
+
+{block title}This Login Page{endblock}
+{block keywords}This is home keywords{endblock}
+{block description}This is home description{endblock}
+
+{% block body %}
+<br>
+<!-- BREADCRUMB -->
+<div id="breadcrumb" style="padding: 50px;">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">User Profile Update</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-3">
+                {% include "user_panel.html" %}
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="pull-center">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+
+                <div class="billing-details d-flex justify-content-center">
+                    <div class="section-title">
+                        <h3 class="title">User Profile Update</h3>
+                    </div>
+                </div>
+
+                <form id="update" method="POST" enctype="multipart/form-data" class="d-flex justify-content-center">
+                    {% csrf_token %}
+                    {{ user_form.non_field_errors }}
+                    {{ user_form.errors }}
+
+
+                    <fieldset>
+
+                        <div class="form-group row">
+                            {{ user_form.username.errors }}
+                            <div class="col d-flex justify-content-end">
+                                {{ user_form.username.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ user_form.username  }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ user_form.email.error }}
+                            <div class="col d-flex justify-content-end">
+
+                                {{ user_form.email.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ user_form.email }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col d-flex justify-content-end">
+                                {{ user_form.first_name.error }}
+                                {{ user_form.first_name.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ user_form.first_name  }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ user_form.last_name.error }}
+                            <div class="col d-flex justify-content-end">
+                                {{ user_form.last_name.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ user_form.last_name  }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ profile_form.phone.error }}
+                            <div class="col d-flex justify-content-end">
+                                {{ profile_form.phone.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ profile_form.phone  }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ profile_form.address.error }}
+                            <div class="col d-flex justify-content-end">
+                                {{ profile_form.address.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ profile_form.address  }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ profile_form.country.error }}
+                            <div class="col d-flex justify-content-end">
+                                {{ profile_form.country.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ profile_form.country  }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ profile_form.city.error }}
+                            <div class="col d-flex justify-content-end">
+                                {{ profile_form.city.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ profile_form.city }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ profile_form.image.error }}
+                            <div class="col d-flex justify-content-end">
+                                {{ profile_form.image.label_tag }}
+                            </div>
+                            <div class="col">
+                                {{ profile_form.image  }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="primary-btn btn-block" type="submit">Update</button>
+                        </div>
+                    </fieldset>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+
+<style>
+    #update {
+        color: #37517e;
+    }
+
+    .input {
+        width: 200px;
+        border-color: #37517e;
+        border-top:transparent;
+        border-left: transparent;
+        border-right: transparent;
+        border-width: 0.25px;
+        color: #37517e;
+    }
+
+    .input:focus {
+        outline: none;
+        background-color: khaki;
+    }
+
+    #update .col {
+        padding: 10px;
+    }
+
+    #update .row {
+        align-content: center;
+    }
+
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 600px) {
+    #update, .input {
+      font-size: 12px;
+      font-weight: 700;
+    }
+  }
+</style>
+
+{% endblock %}

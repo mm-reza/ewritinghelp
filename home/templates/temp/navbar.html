@@ -1,0 +1,32 @@
+<li class="nav-item dropdown">
+    {% if user.id is not None %}
+    <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+    <img src="{{request.session.userimage}}" style="height: 40px; border-radius: 30%">
+    <strong class="btn btn-warning text-uppercase">{{ user.first_name }} <i class="fa fa-caret-down"></i></strong>
+    </a>
+    {% else %}
+    <a href="{% url 'home' %}" class="text-uppercase">Login</a> / <a href="{% url 'home' %}"
+      class="text-uppercase">Sign Up</a>
+    {% endif %}
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a href="#" class="dropdown-item fa fa-user-o"> My Account</a>
+      <a href="#" class="dropdown-item fa fa-exchange">Compare</a>
+      <a href="#" class="dropdown-item fa fa-check">Checkout</a>
+      <a href="#" class="dropdown-item fa fa-unlock-alt">Logout</a>
+      <a href="#" class="dropdown-item fa fa-user-plus">Create An Account</a>
+    </div>
+  </li>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown link
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </li>
+
+  <!-- /Account -->

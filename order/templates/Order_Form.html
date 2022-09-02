@@ -1,0 +1,323 @@
+{% extends 'homebase.html' %}
+{% block title %} Shop Cart {% endblock %}
+{% block description %} {% endblock %}
+{% block keywords %} {% endblock %}
+{% load static %}
+
+
+{% block body %}
+
+<section>
+    <div class="row justify-content-center" style="padding:5%">
+
+        {% if total == 0  %}
+
+        <div class="box-element product col-lg-6" style="padding-left:20%; display:flexbox;">
+            <div class="pull-left">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{ message | safe }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <a class="btn btn-outline-dark" href="/">&#x2190; Continue Shopping</a>
+            <br>
+            <br>
+            <p>
+            <h2>No item in cart</h2>
+            </p>
+        </div>
+
+        {% else %}
+        <div class="col-lg-5">
+
+            <div class="pull-left">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{ message | safe }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="box-element"">
+            <Form id=" form" onsubmit="return validateForm()" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="billing-details">
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="first_name" value="{{ user.first_name }}"
+                                class="form-control input" maxlength="15" id="id_first_name"
+                                placeholder="First Name...">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="last_name" class="form-control input" maxlength="15"
+                                id="id_last_name" placeholder="Last Name...">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="phone" value="{{ user.phone }}" class="form-control input"
+                                maxlength="15" id="id_phone" placeholder="Phone...">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" name="address" value="{{ user.first_name }}" class="form-control input"
+                                maxlength="20" id="id_address" placeholder="Email...">
+                        </div>
+
+                    </div>
+                    <hr>
+                    <p>Optional Information:</p>
+                    <hr>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">City</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="city" class="form-control input" maxlength="15" id="id_city"
+                                placeholder="City...">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">Country</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="country" class="form-control input" maxlength="15" id="id_country"
+                                placeholder="Country...">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">Account</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="account" class="form-control input" maxlength="30" id="id_account"
+                                placeholder="Account...">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <input id="id_file" type="file" class="" name="files">
+                    </div>
+
+                    <div class="form-group row">
+
+                        <input type="password" class="form-control" id="pwd">
+                        <label for="pwd">Password</label>
+                    </div>
+
+
+
+                </div>
+
+                <hr>
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Place Order">
+
+                </Form>
+
+                <script type="text/javascript">
+                    var total = '{{total}}'
+
+                    function validateForm() {
+                        var total = '{{total}}'
+                        if (total == 0) {
+                            alert("You dont have any item in cart");
+                            return false;
+                        }
+                        else alert('Transaction complited');
+                    }
+                </script>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="col-lg-7" style="margin-top: 0;">
+
+            <div class="box-element">
+
+                <a class="btn btn-outline-dark" href="/">&#x2190; Continue Shopping</a>
+
+                <br>
+                <br>
+
+
+            </div>
+
+            <br>
+            <div class="box-element">
+                <div class="cart-row" style="padding-left: 0;">
+                    <div style="flex:1"></div>
+                    <div style="flex:1"><strong>Item</strong></div>
+                    <div style="flex:1"><strong>Price</strong></div>
+                    <div style="flex:1; padding-left: -20px;"><strong>Quantity</strong></div>
+                    <div style="flex:1"><strong>Total</strong></div>
+                </div>
+                {% for rs in shopcart %}
+                <div class="cart-row">
+
+                    <div style="flex:1;">
+                        {% if rs.variant.image_id  > 0 %}
+                        <img class="row-image" src="{{rs.variant.image}}" alt="" style="height: 5vh; width: auto;">
+                        {% else %}
+                        <img class="row-image" src="{{rs.product.image.url}}" style="height: 5vh; width: auto;">
+                        {% endif %}
+                    </div>
+
+                    <div style="flex:1">
+                        <p style="padding-right: 10px;">{{ rs.variant.size }} to {{ rs.variant.color }}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p style="padding-left: 20px;">
+                            {% if rs.product.variant == 'None' %}
+                            {{ rs.product.price|floatformat:2 }}
+                            {% else %}
+                            {{ rs.variant.price|floatformat:2 }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div style="flex:1">
+                        <p style="padding-left: 20px;"> {{rs.quantity}}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p style="padding-left: 20px;">$
+                            {% if rs.product.variant == 'None' %}
+                            {{ rs.amount|floatformat:2 }}
+                            {% else %}
+                            {{ rs.varamount|floatformat:2 }}
+                            {% endif %}</p>
+                    </div>
+                    <div style="flex:1 text-left">
+                        <p><a href="/order/deletefromcart/{{ rs.id }}"
+                                onclick="return confirm('Delete ! Are you sure?')" class="main-btn icon-btn">
+                                <iclass="fa fa-close">x</i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+                <table class="text-right" style="float:right">
+                    <tr>
+                        <th class="empty" colspan="3"></th>
+                        <th>TOTAL ITEMS</th>
+                        <th colspan="2" class="sub-total">{{ subtotal}}</th>
+                    </tr>
+                    <tr>
+                        <th class="empty" colspan="3"></th>
+                        <th>PROCESSING FEE</th>
+                        <td colspan="2">FREE</td>
+                    </tr>
+                    <tr>
+                        <th class="empty" colspan="3"></th>
+                        <th>TOTAL</th>
+                        <th colspan="2" class="total">${{ total}}</th>
+                    </tr>
+                </table>
+
+                <table class="table">
+
+                    <tr>
+                        <th>
+                            <h5>Items: <strong>{{ subtotal}}</strong></h5>
+                        </th>
+                        <th>
+                            <h5>Total:<strong> ${{total|floatformat:2}}</strong></h5>
+                        </th>
+                    </tr>
+                </table>
+                <hr>
+
+            </div>
+
+        </div>
+        {% endif %}
+
+
+
+    </div>
+</section>
+<style>
+    form {
+        margin: 30px;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    label {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        transition: all 0.3s;
+        color: #999;
+        font-weight: normal;
+    }
+
+    .form-control:focus~label {
+        left: 5px;
+        top: -10px;
+        background: #fff;
+        padding: 0 5px;
+    }
+
+    label.active {
+        left: 5px;
+        top: -10px;
+        background: #fff;
+        padding: 0 5px;
+    }
+
+
+    /* Change Autocomplete styles in Chrome*/
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        /* border: 1px solid green; */
+        /* -webkit-text-fill-color: green !important; */
+        -webkit-text-fill-color: black;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+        $(".form-group .form-control").blur(function () {
+            if ($(this).val() != "") {
+                $(this).siblings("label").addClass("active");
+            } else {
+                $(this).siblings("label").removeClass("active");
+            }
+        });
+    });
+</script>
+
+
+{% endblock body %}

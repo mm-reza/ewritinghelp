@@ -1,0 +1,89 @@
+{% load static %}
+
+<div class="row" style="padding: 30px 0px 0px 0px;">
+
+  <div class=" col-md-12 d-flex justify-content-md-end">
+
+    {% for rs in var %}
+
+    <div class="col-lg-4" style="padding: 20px; height: 400px;">
+
+      <div class="box-element product">
+        <form onsubmit="return phonenumber(estimate)" onclick="pass()" name="form1" action="/product/dollar/14">
+
+          <h6 style="padding-top: 30px;"><strong>Estimate latest USD Exchange Rate</strong></h6>
+          <hr>
+          <div class="estimate input-group d-flex align-items-center">
+            <div class="input-group-addon">$</div>
+            <input class="form-control center" name="estimate" value="3" min="3" max="{{ variant.quantity }}"
+              id="estimate" type="number" />
+            <div class="input-group-addon">.00</div>
+          </div>
+
+          <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
+            <label class="custom-control-label" for="customControlValidation1">Check this box</label>
+          </div>
+
+          <a class="submit"><input class="btn btn-success btn-block" type="submit" value="Submit" /></a>
+
+        </form>
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+</div>
+<div class="pull-left">
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}}" role="alert">
+    {{ message | safe }}
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+
+
+<style>
+
+  .estimate {
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .form-control:focus {
+    box-shadow: none;
+  }
+
+  .center {
+    text-align: center;
+    font-size: 30px;
+  }
+</style>
+
+<script>
+  function pass() {
+    var dollar = document.getElementById("estimate").value;
+    localStorage.setItem("estval", dollar);
+    return false;
+  }
+
+  function phonenumber(inputtxt) {
+    if ((inputtxt.value % 1) == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  $(document).ready(function () {
+    $("input").keypress(function () {
+      if ($(this).val().length == 5)
+        return false;
+    })
+  });
+</script>

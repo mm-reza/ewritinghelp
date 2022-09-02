@@ -1,0 +1,96 @@
+{% extends 'homebase.html' %}
+{% load i18n %}
+{% block title %} Contact Us-{{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" style="padding-top: 30px;">
+    <div class="container">
+        <ul class="breadcrumb">
+
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-5">
+
+                <div class="billing-details">
+
+                    <div class="section-title">
+                        <h3 class="title">Contact Form</h3>
+
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                    <form id="checkout-form" class="clearfix" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input class="btn btn-success btn-block" style="background: #37517e;" type="submit" value="Send">
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="col-md-7">
+                <div class="shiping-methods">
+                    <div class="section-title">
+                        <h3 class="title">{% trans "Contact Information"%}</h3>
+                    </div>
+                    <div>
+                        {{ setting.contact|safe }}
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+<style>
+    input,
+    textarea {
+        width: 100%;
+        padding: 5px !important;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border-radius: 3px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgb(169, 169, 169)
+    }
+
+    input {
+        height: 30px;
+    }
+
+</style>
+
+
+{% endblock %}

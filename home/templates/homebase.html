@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title> {% block title %} Free Plagiarism Checker {% endblock %} </title>
+	<meta name="keyworkds" content="{% block keyworkds %} free plagiarism checker, grammarly, turnitin {% endblock %}">
+	<meta name="description" content="{% block description %} free plagiarism checker {% endblock %}">
+
+	<link rel="icon" type="image/png" href="{% static 'img/logs.svg' %}">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<!-- jQuery !
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+	<!-- jQuery UI !
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="/static/js/jquery-2.2.4.min.js"></script> -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}"/>
+
+
+
+	{% block head %} {% endblock %}
+
+</head>
+
+<body>
+
+	
+<header id="header">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark" id="myHeader">
+
+        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+
+        <div class="d-flex flex-row order-lg-3">
+            {% if user.id is not None %}
+
+            <div class="navbar-nav flex-row  order-2">
+
+
+                <table class="get-started-btn navbar-nav flex-row" style="height: fit-content;">
+                    <tr>
+                        <th><a href="/user"><img src="{{ user.userprofile.image.url }}"
+                                    style="border-radius: 80%;height: 25px; width: 25px; padding-left: 0;"></a></th>
+                        <th>{{ user.first_name }}</th>
+                    </tr>
+                </table>
+            </div>
+            <div class=" order-1">
+                <a href="/logout" class="text-uppercase; get-started-btn">Logout</a>
+            </div>
+
+            {% else %}
+
+            <div class="nav-item ">
+                <a href="/login" class="text-uppercase; get-started-btn">Login</a>
+                <a href="/signup" class="text-uppercase; get-started-btn">Register</a>
+            </div>
+
+            {% endif %}
+            <button class="navbar-toggler order-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+                <div class="cont" onclick="mybar(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </button>
+
+
+        </div>
+
+
+        <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto">
+                <div class="form-inline">
+                    <a class="nav-link" style="padding-right: 20px;" href="/contact">Contact Us </a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+html, body {width: auto!important; overflow-x: hidden!important}
+    .bg-dark {
+        background-color: #37517e !important;
+    }
+
+    .navbar {
+        padding: 5px;
+        transition: all ease 0.4s;
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 0px 0px 0px 0px;
+        transition: all ease 0.4s;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    /* Get Startet Button */
+    .get-started-btn {
+        text-align: center;
+        line-height: 30px;
+        margin-left: 5px;
+        color: #fff;
+        border-radius: 50px;
+        padding: 3px 15px 5px 15px;
+        white-space: nowrap;
+        transition: 0.3s;
+        font-size: 14px;
+        display: inline-block;
+        border: 2px solid #47b2e4;
+        background-color: #37517e;
+    }
+
+    .get-started-btn:hover {
+        background: #31a9e1;
+        color: #fff;
+    }
+
+    /*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+    #header {
+        transition: all 0.5s;
+        z-index: 997;
+        padding: 15px 0;
+    }
+
+    #header.header-scrolled,
+    #header.header-inner-pages {
+        background: rgba(40, 58, 90, 0.9);
+    }
+
+    #header .logo {
+        font-size: 30px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    #header .logo a {
+        color: #fff;
+    }
+
+    #header .logo img {
+        max-height: 40px;
+    }
+
+    .navbar-toggler {
+        border: none;
+
+    }
+
+    .navbar-toggler:focus {
+        outline: none;
+    }
+
+    .cont {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: rgb(255, 255, 255);
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    .change .bar1 {
+        -webkit-transform: rotate(45deg) translate(9px, 6px);
+        transform: rotate(45deg) translate(9px, 6px);
+    }
+
+    .change .bar2 {
+        opacity: 0;
+    }
+
+    .change .bar3 {
+        -webkit-transform: rotate(-45deg) translate(8px, -8px);
+        transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+    footer {
+        margin-top: 5%;
+    }
+
+    #copyright {
+        background-color: #37517e;
+        padding: 10px;
+        color: white;
+    }
+</style>
+
+
+<script>
+    // Toggle Animation by Class
+    window.onscroll = function () { myFunction() };
+
+    var navbar = document.getElementById("myHeader");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            navbar.classList.add("sticky");
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
+</script>
+
+<script>
+    function mybar(x) {
+        x.classList.toggle("change");
+    }
+</script>
+
+<style>
+    .mySlide {
+        animation: mymove 4s ease-in-out infinite;
+    }
+
+    @keyframes mymove {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+
+    }
+
+    .mySlide img {
+        transition: opacity 1s ease-in-out;
+    }
+
+    #contain {
+        padding: 1px;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+
+    .items {
+        justify-content: center;
+        padding: 5px;
+
+    }
+
+    .items img {
+        width: 100px;
+    }
+
+    @keyframes scaleIn {
+        from {
+            transform: scale(.5, .5);
+            opacity: .5;
+        }
+
+        to {
+            transform: scale(2.5, 2.5);
+            opacity: 0;
+        }
+    }
+
+
+
+
+
+
+    /**===== spinner=====*/
+    #spinner {
+        display: block;
+        position: absolute;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        -webkit-animation: spinner 1s linear infinite;
+        animation: spinner 3s linear infinite;
+    }
+
+    #spinner:after {
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        border: 5px solid transparent;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.25);
+        -webkit-animation: spinner_after 2s linear infinite;
+        animation: spinner_after 2s linear infinite;
+    }
+
+    @keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        50% {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        50% {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner_after {
+        0% {
+            background: url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+
+        25% {
+            background:url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+
+        50% {
+            background: url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+
+        100% {
+            background: url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+    }
+
+    @-webkit-keyframes spinner_after {
+        0% {
+            background: url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+
+        25% {
+            background:url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+
+        50% {
+            background: url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+
+        100% {
+            background: url("{%  static 'images/svg/white.svg' %}");
+            opacity: 0.5;
+        }
+    }
+
+    /** END of spinner4 */
+</style>
+
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlide");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 4000);
+    }
+</script>
+
+	{% block sidebar %} {% endblock %}
+
+	{% block slider %} {% endblock %}
+
+	{% block body %} {% endblock %}
+
+	{% block shopcart %} {% endblock %}
+
+	{% block cart %} {% endblock %}
+
+	{% block content %} {% endblock content %}
+
+
+	<footer class="bg-light">
+		<div class="container">
+			<div class="row" style="padding-bottom: 5%">
+				<div class="col-md-3">
+					<!-- footer logo -->
+					<div class="footer-logo">
+						<a class="logo" href="/">
+							<img src="{% static 'img/logs.svg' %}" alt="" style="width: 100px; margin-left: 0; margin: 30px;">
+						</a>
+					</div>
+					<!-- /footer logo -->
+					<p>Perfects your spelling, punctuation and grammar before you submit your work</p>
+
+
+				</div>
+
+				<div class="col-md-3">
+					<h3 class="footer-header">Customer Service</h3>
+					<ul class="list-links">
+						<li><a href="/">About Us</a></li>
+						<li><a href="/contact">Contact Us</a></li>
+						<li><a href="/contact">FAQ</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-3">
+					<h3 class="footer-header">My Account</h3>
+					<ul class="list-links">
+						<li><a href="/user">My Account</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-3">
+					<h3 class="footer-header">Stay Connected</h3>
+					
+					<form><p>Add your email to get 100% free online plagiarism checker report</p>
+						<div class="form-group">
+							<input class="input btn-block" placeholder="Enter Email Address">
+						</div>
+						<input class="btn btn-success btn-block"
+						style=" border: none; border-radius: 4px; background: #37517e; color:white;font-weight:600; text-align: center; padding:5px;"
+						type="submit" value="Join Newslatter" />
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="copyright" class="row text-center">
+			<div class="col-md-12">
+				<!-- footer copyright -->
+				<div class=" footer-copyright">
+					Copyright &copy;
+					<script>document.write(new Date().getFullYear());</script>
+					All rights reserved | This template is made by <a href="">ewritinghacks</a>
+				</div>
+				<!-- /footer copyright -->
+			</div>
+
+		</div>
+	</footer>
+
+<!-- jQuery Plugins
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+
+-->	
+
+	
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<script src="{% static 'js/slick.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
