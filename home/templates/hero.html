@@ -18,7 +18,7 @@
     <div class="row d-flex justify-content-center">
         <div class="col-9">
 
-        {% for rs in var %}
+        {% comment %} {% for rs in var %} {% endcomment %}
 
         <div class="box-element" style="border-radius: 4px;">
           <form onclick="pass()" onsubmit="return check();" name="form1" action="/order/addfile">
@@ -41,7 +41,7 @@
         </div>
 
 
-        {% endfor %}
+        {% comment %} {% endfor %} {% endcomment %}
 
       </div>
 
