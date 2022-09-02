@@ -70,9 +70,9 @@ def home(request):
 	product_latest = Product.objects.all().order_by('-id')[:4]
 	product_random = Product.objects.all().order_by('?')[:4]
 	
-	var = Product.objects.filter(title='dollar')
+	# var = Product.objects.filter(title='dollar')
 	context = {
-			'var': var,
+			# 'var': var,
 			'product_home': product_home,
 			'product_slider': product_slider,
 			'product_latest': product_latest,
@@ -122,9 +122,8 @@ def contactus(request):
 			data.ip = request.META.get('REMOTE_ADDR')
 			url = Find(data.message)
 			if not url:
-			    data.save()  # save data to table
-			messages.success(
-				request, "Your message has ben sent. Thank you for your message.")
+				data.save()  # save data to table
+			messages.success(request, "Your message has ben sent. Thank you for your message.")
 			return HttpResponseRedirect('/contact')
 
 	setting = Setting.objects.get(pk=1)
