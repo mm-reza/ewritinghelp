@@ -19,7 +19,7 @@ on:
 #     - name: 🚚 Get latest code
 #       uses: actions/checkout@v2
     
-name: Deploy website to production on push
+# name: Deploy website to production on push
 
 jobs:
   build:
