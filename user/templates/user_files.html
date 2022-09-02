@@ -55,19 +55,16 @@
                     </div>
                 </div>
                 
-                <table class="shopping-cart-table table">
+                {% comment %} <table class="shopping-cart-table table"> {% endcomment %}
+                <table style="width: 100%;">
                     <tr>
-                        <th class="text-left">ID </th>
-                        <th class="text-left">Status </th>
                         <th class="text-left">Date </th>
-                        <th class="text-left">Files </th>
+                        <th class="text-left">File Name </th>
                         <th class="text-center">Reports </th>
                         <th class="text-left"></th>
                     </tr>
                     {% for rs in ufiles %}
                     <tr>
-                        <td class="text-left">{{ rs.id}} </td>
-                        <td class="text-left">{{ rs.status}} </td>
                         <td class="text-left">{{ rs.create_at |date:"d/m/y" }} </td>
                         <td class="text-left">
                             <a href="{{ rs.files.url }}"> {{ rs.first_name}} </a>
