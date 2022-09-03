@@ -31,7 +31,7 @@ if DEBUG is True:
         '*',
     ]
 else:
-    ALLOWED_HOSTS = ['staging.ewritinghelps.com']
+    ALLOWED_HOSTS = ['ewritinghelps.com']
 
 
 # Application definition
