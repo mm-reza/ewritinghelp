@@ -6,8 +6,6 @@ change allowed host
 change static path
 
 
-
-
 -------git bash/cmd comments------ 
 
 git init
