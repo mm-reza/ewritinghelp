@@ -1,13 +1,14 @@
 
 
-1. change passesger_wsgi.py
-2. change .htaccess for chaching 
-3. 
+change passesger_wsgi.py
+change .htaccess for chaching 
+change allowed host
+change static path
 
 
 
-git bash/cmd comments 
 
+-------git bash/cmd comments------ 
 
 git init
 git add .
