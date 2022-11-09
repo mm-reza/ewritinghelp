@@ -7,6 +7,7 @@ change static path
 
 
 -------git bash/cmd comments------ 
+https://www.youtube.com/watch?v=UNWIXYSZfZY&ab_channel=WatchandLearn
 
 git init
 git add .

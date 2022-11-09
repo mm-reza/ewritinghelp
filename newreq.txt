@@ -1,4 +1,4 @@
-django==4.0.7
+django
 django-admin-thumbnails
 django-ckeditor
 django-js-asset
@@ -6,5 +6,4 @@ django-mptt
 django-widget-tweaks
 lazy-object-proxy
 messagebird
-pillow==8.3.2
 requests
