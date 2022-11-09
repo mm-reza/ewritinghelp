@@ -8,14 +8,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from order.models import*
-from product.models import*
 from user.models import*
 from user.models import UserProfile
 from.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-# from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, BadHeaderError
@@ -29,11 +28,9 @@ def index(request):
 
 	current_user = request.user
 	profile = UserProfile.objects.get(user_id=current_user.id)
-	recent_order = Order.objects.filter(user_id=current_user.id).order_by('-id')[:1]
 	recent_files = FOrder.objects.filter(user_id=current_user.id).order_by('-id')[:1]
 	context = {
 			'profile': profile,
-			'recent_order':recent_order,
 			'recent_files':recent_files,
 		}
 	return render(request, 'user_dash.html', context)
@@ -152,73 +149,6 @@ def password_update(request):
  })
 
 @login_required(login_url='/login') # Check login
-def user_orders(request):
-	category = Category.objects.all()
-	current_user = request.user
-	orders=Order.objects.filter(user_id=current_user.id).order_by('-id')
-	context = {'category': category,
-			   'orders': orders,
-			   }
-	return render(request, 'user_orders.html', context)
-
-@login_required(login_url='/login') # Check login
-def user_orderdetail(request,id):
-	category = Category.objects.all()
-	current_user = request.user
-	order = Order.objects.get(user_id=current_user.id, id=id)	
-	orderitems = OrderProduct.objects.filter(order_id=id)
-	replys = Reply.objects.filter(order_id=id).order_by('-id')[:1]
-	
-	context = {
-		'category': category,
-		'order': order,
-		'orderitems': orderitems,
-		'replys': replys,
-	}
-	return render(request, 'user_order_detail.html', context)
-
-@login_required(login_url='/login') # Check login
-def user_order_product(request):
-	category = Category.objects.all()
-	current_user = request.user
-	order_product = OrderProduct.objects.filter(user_id=current_user.id).order_by('-id')
-	context = {'category': category,
-			   'order_product': order_product,
-			   }
-	return render(request, 'user_order_products.html', context)
-
-@login_required(login_url='/login') # Check login
-def user_order_product_detail(request,id,oid):
-	category = Category.objects.all()
-	current_user = request.user
-	order = Order.objects.get(user_id=current_user.id, id=id)
-	orderitems = OrderProduct.objects.filter(id=id,user_id=current_user.id)
-	context = {
-		'category': category,
-		'order': order,
-		'orderitems': orderitems,
-	}
-	return render(request, 'user_order_detail.html', context)
-
-def user_comments(request):
-	category = Category.objects.all()
-	current_user = request.user
-	comments = Comment.objects.filter(user_id=current_user.id).order_by('-id')
-	context = {
-		'category': category,
-		'comments': comments,
-	}
-	return render(request, 'user_comments.html', context)
-
-@login_required(login_url='/login') # Check login
-def user_deletecomment(request,id):
-	current_user = request.user
-	Comment.objects.filter(id=id, user_id=current_user.id).delete()
-	messages.success(request, 'Comment deleted..')
-	return HttpResponseRedirect('/user/comments')
-
-
-@login_required(login_url='/login') # Check login
 def reply(request,id):
    url = request.META.get('HTTP_REFERER')  # get last url
    #return HttpResponse(url)
@@ -243,11 +173,9 @@ def reply(request,id):
 
 @login_required(login_url='/login') # Check login
 def user_replys(request):
-	category = Category.objects.all()
 	current_user = request.user
 	replys = Reply.objects.filter(user_id=current_user.id).order_by('-id')
 	context = {
-		'category': category,
 		'replys': replys,
 	}
 	return render(request, 'user_replys.html', context)

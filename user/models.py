@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
 from django.forms import ModelForm
-from order.models import Order
+from order.models import FOrder
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from home.validators import validate_file_size
@@ -44,7 +44,7 @@ class Reply(models.Model):
         ('True', 'True'),
         ('False', 'False'),
     )
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(FOrder, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=50, blank=True)
     reply = models.CharField(max_length=250, blank=True)

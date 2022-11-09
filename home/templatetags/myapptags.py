@@ -3,8 +3,6 @@ from django import template
 #from django.urls import reverse
 
 from ecom import settings
-from order.models import ShopCart
-
 #from product.models import Category
 
 register = template.Library()

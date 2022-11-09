@@ -16,8 +16,6 @@ from ecom import settings
 
 
 from user.models import UserProfile
-from product.models import*
-from order.views import shopcart, ShopCart
 from home.models import*
 from home.forms import SearchForm
 
@@ -45,55 +43,28 @@ def Find(string):
 
 def home(request):
 	settings = Setting.objects.get(pk=1)
-	category = Category.objects.all()
 	products = None
 	
-	categories = Category.get_all_categories()
 	categoryID = request.GET.get('category_id')
 
 	current_user = request.user
-	shopcart = ShopCart.objects.filter(user_id=current_user.id)
-
-	subtotal = 0
-
-	for rs in shopcart:
-		subtotal += rs.quantity
-	
-	if categoryID:
-		products = Product.get_all_products_by_categoryid(categoryID)
-	else:
-		products = Product.get_all_products()
 
 	page = "home"
-	product_home = Product.objects.all()
-	product_slider = Product.objects.all().order_by('-id')[:3]
-	product_latest = Product.objects.all().order_by('-id')[:4]
-	product_random = Product.objects.all().order_by('?')[:4]
+
 	
 	# var = Product.objects.filter(title='dollar')
 	context = {
-			# 'var': var,
-			'product_home': product_home,
-			'product_slider': product_slider,
-			'product_latest': product_latest,
-			'product_random': product_random,
 			'settings': settings,
-			'category': category,
 			'page': page,
 			'products': products,
-			'categories':categories,
-			'subtotal': subtotal,
 			}
 	print(request.GET)
-	print(categories)
 	return render(request, "home.html", context)
 
 
 def aboutus(request):
-	category = Category.objects.get(pk=id)
 	settings = Setting.objects.get(pk=1)
 	context = {
-		'category': category,
 		'settings': settings,
 	}
 	return render(request, "about.html", context)
@@ -143,166 +114,6 @@ def index(request):
 		'settings': settings,
 	}
 	return render(request, "index.html", context)
-
-
-def category_products(request, id, slug):
-
-	category = Category.objects.get(pk=id)
-	products = Product.objects.filter(category_id=id)  # default language
-	context = {'products': products,
-			   'category': category,
-			   # 'catdata':catdata,
-			   }
-	return render(request, 'category_products.html', context)
-
-def search(request):
-	if request.method == 'POST': # check post
-		form = SearchForm(request.POST)
-		if form.is_valid():
-			query = form.cleaned_data['query'] # get form input data
-			catid = form.cleaned_data['catid']
-			if catid==0:
-				products=Product.objects.filter(title__icontains=query)  #SELECT * FROM product WHERE title LIKE '%query%'
-			else:
-				products = Product.objects.filter(title__icontains=query,category_id=catid)
-
-			category = Category.objects.all()
-			context = {'products': products, 'query':query,
-					   'category': category }
-			return render(request, 'search_products.html', context)
-
-	return HttpResponseRedirect('/')
-
-
-def side(request):
-	settings = Setting.objects.get(pk=1)
-	product_slider = Product.objects.all().order_by('-id')[:3]
-	context = {
-		'settings': settings,
-		'product_slider': product_slider,
-	}
-	return render(request, "side.html", context)
-
-def product_detail(request,id,slug):
-	query = request.GET.get('q')
-	category = Category.objects.all
-	product = Product.objects.get(pk=id)  # default language
-	images = Images.objects.filter(product_id=id)
-	comments = Comment.objects.filter(product_id=id,status='True')
-	shopcart = ShopCart.objects.all()
-	subtotal = 0
-	for rs in shopcart:
-		subtotal += rs.quantity
-	context = {'product': product,
-			   'category': category,
-			   'images': images,
-			   'comments': comments,
-			   'subtotal':subtotal,
-			   }
-	if product.variant !="None": # Product have variants
-		if request.method == 'POST': #if we select colorz
-			variant_id = request.POST.get('variantid')
-			variant = Variants.objects.get(id=variant_id) #selected product by click color radio
-			colors = Variants.objects.filter(product_id=id,size_id=variant.size_id )
-			sizes = Variants.objects.raw('SELECT * FROM  product_variants  WHERE product_id=%s GROUP BY size_id',[id])
-			query = variant.title+' Size:' +str(variant.size) +' Color:' +str(variant.color)
-		else:
-			variants = Variants.objects.filter(product_id=id)
-			colors = Variants.objects.filter(product_id=id,size_id=variants[0].size_id )
-			sizes = Variants.objects.raw('SELECT * FROM  product_variants  WHERE product_id=%s GROUP BY size_id',[id])
-			variant =Variants.objects.get(id=variants[0].id)
-		context.update({'sizes': sizes, 'colors': colors,
-						'variant': variant,'query': query
-						})
-	return render(request,'product_detail.html',context)
-
-
-def product_dollar(request,id,slug):
-	query = request.GET.get('q')
-	category = Category.objects.all
-	product = Product.objects.get(pk=id)  # default language
-	images = Images.objects.filter(product_id=id)
-	comments = Comment.objects.filter(product_id=id,status='True')
-
-	current_user = request.user
-	shopcart = ShopCart.objects.filter(user_id=current_user.id)
-	subtotal = 0
-	for rs in shopcart:
-		subtotal += rs.quantity
-
-	context = {'product': product,
-			   'category': category,
-			   'images': images,
-			   'comments': comments,
-			   'subtotal':subtotal,
-			   }
-	if product.variant !="None": # Product have variants
-		if request.method == 'POST': #if we select color
-			variant_id = request.POST.get('variantid')
-			variant = Variants.objects.get(id=variant_id) #selected product by click color radio
-			colors = Variants.objects.filter(product_id=id,size_id=variant.size_id )
-			sizes = Variants.objects.raw('SELECT * FROM  product_variants  WHERE product_id=%s GROUP BY size_id',[id])
-			query = variant.title+' Size:' +str(variant.size) +' Color:' +str(variant.color)
-		else:
-			variants = Variants.objects.filter(product_id=id)
-			colors = Variants.objects.filter(product_id=id,size_id=variants[0].size_id )
-			sizes = Variants.objects.raw('SELECT * FROM  product_variants  WHERE product_id=%s GROUP BY size_id',[id])
-			variant =Variants.objects.get(id=variants[0].id)
-		context.update({'sizes': sizes, 'colors': colors,
-						'variant': variant,'query': query
-						})
-	return render(request,'dollar.html',context)
-
-
-def estimate(request):
-	product = Product.objects.get(id='14')  # default language
-	images = Images.objects.filter(product_id='14')
-	comments = Comment.objects.filter(product_id='14',status='True')
-
-	current_user = request.user
-	shopcart = ShopCart.objects.filter(user_id=current_user.id)
-	subtotal = 0
-	for rs in shopcart:
-		subtotal += rs.quantity
-
-	context = {'product': product,
-			   'images': images,
-			   'comments': comments,
-			   'subtotal':subtotal,
-			   }
-	if product.variant !="None": # Product have variants
-		if request.method == 'POST': #if we select color
-			variant_id = request.POST.get('variantid')
-			variant = Variants.objects.get(id=variant_id) #selected product by click color radio
-			colors = Variants.objects.filter(product_id='14',size_id=variant.size_id )
-			sizes = Variants.objects.raw('SELECT * FROM  product_variants  WHERE product_id=%s GROUP BY size_id',['14'])
-			
-		else:
-			variants = Variants.objects.filter(product_id='14')
-			colors = Variants.objects.filter(product_id='14',size_id=variants[0].size_id )
-			sizes = Variants.objects.raw('SELECT * FROM  product_variants  WHERE product_id=%s GROUP BY size_id',['14'])
-			variant =Variants.objects.get(id=variants[0].id)
-		context.update({'sizes': sizes, 
-						'colors': colors,
-						'variant': variant,
-						})
-	return render(request,'dollar.html',context)
-
-def ajaxcolor(request):
-	data = {}
-	if request.POST.get('action') == 'post':
-		size_id = request.POST.get('size')
-		productid = request.POST.get('productid')
-		colors = Variants.objects.filter(product_id=productid, size_id=size_id)
-		context = {
-			'size_id': size_id,
-			'productid': productid,
-			'colors': colors,
-		}
-		data = {'rendered_table': render_to_string('color_list.html', context=context)}
-		return JsonResponse(data)
-	return JsonResponse(data)
-
 
 
 def password_reset_request(request):

@@ -17,13 +17,6 @@ from django.urls import path
 from order import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('addtoshopcart/<int:id>', views.addtoshopcart, name='addtoshopcart'),
-    path('deletefromcart/<int:id>', views.deletefromcart, name='deletefromcart'),
-    path('updatecart/<int:id>', views.updatecart, name='updatecart'),
-    path('orderproduct/', views.orderproduct, name='orderproduct'),
-    path('complete/', views.complete, name='complete'),
-    path('convert/', views.convert, name='convert'),
-
+    # path('', views.index, name='index'),
     path('addfile', views.addfile, name='addfile'),
     ]
