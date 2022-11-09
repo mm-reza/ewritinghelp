@@ -7,3 +7,4 @@ django-widget-tweaks
 lazy-object-proxy
 messagebird
 requests
+pillow
