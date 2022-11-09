@@ -30,7 +30,7 @@ if DEBUG is True:
         '127.0.0.1:8000'
     ]
 else:
-    ALLOWED_HOSTS = ['staging.ewritinghelps.com']
+    ALLOWED_HOSTS = ['ewritinghelps.com']
 
 
 # Application definition
